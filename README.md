@@ -1,4 +1,4 @@
-# Degree Planner
+# GT Planner
 
 Degree Planner is a website that provides students with a visual roadmap of their academic journey, making course planning clear and simple.
 
