@@ -1,6 +1,6 @@
 # GT Planner
 
-Degree Planner is a website that provides students with a visual roadmap of their academic journey, making course planning clear and simple.
+GT Planner is a website that provides students with a visual roadmap of their academic journey, making course planning clear and simple.
 
 ## Technologies
 
@@ -38,7 +38,7 @@ Degree Planner is a website that provides students with a visual roadmap of thei
 
 ## Inspiration
 
-Planning your courses each semester can be tricky. Degree Planner makes it easy and clear by showing your academic path with simple visuals, helping you organize and plan your journey smoothly.
+Planning your courses each semester can be tricky. GT Planner makes it easy and clear by showing your academic path with simple visuals, helping you organize and plan your journey smoothly.
 
 ## What it does
 
