@@ -15,7 +15,7 @@ function App() {
     <>
       <Navbar />
       <MainContainer>{routes}</MainContainer>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PlayGround from "../components/PlayGround";
 
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
@@ -8,21 +9,15 @@ const Home = () => {
       This is Home Page
       <div className="flex gap-2">
         <select className="select select-bordered w-full max-w-xs">
-          <option disabled selected>
-            Major
-          </option>
+          <option>Major</option>
           <option>Computer Science</option>
         </select>
         <select className="select select-bordered w-full max-w-xs">
-          <option disabled selected>
-            Thread
-          </option>
+          <option>Thread</option>
           <option>Media</option>
         </select>
         <select className="select select-bordered w-full max-w-xs">
-          <option disabled selected>
-            Thread
-          </option>
+          <option>Thread</option>
           <option>Intelligence</option>
         </select>
       </div>
@@ -33,7 +28,7 @@ const Home = () => {
       </div>
     </div>
   ) : (
-    <h1>Hello World</h1>
+    <PlayGround />
   );
 };
 
