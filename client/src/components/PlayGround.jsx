@@ -25,7 +25,7 @@ export default function PlayGround() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   useEffect(() => {
-    createPostCourse(null, "CS 1331");
+    createPostCourse(null, "Media & Intelligence");
   }, []);
 
   const createPostCourse = useCallback((prevCourseId, curCourse) => {
