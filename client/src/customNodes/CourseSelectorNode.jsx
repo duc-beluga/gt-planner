@@ -1,5 +1,5 @@
 import { Handle, Position, useNodeId } from "reactflow";
-import { useFlow } from "./FlowProvider";
+import { useFlow } from "../context/FlowProvider";
 export default function CourseSelectorNode({ data }) {
   const { course, postCourses } = data;
 
