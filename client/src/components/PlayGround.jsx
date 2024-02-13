@@ -38,7 +38,7 @@ export default function PlayGround() {
       : null;
     const { x: preX, y: preY } = prevCourseNode
       ? prevCourseNode.position
-      : { x: 50, y: 50 };
+      : { x: 750, y: 100 };
     const newNode = {
       id: newNodeId,
       type: "customNode",
