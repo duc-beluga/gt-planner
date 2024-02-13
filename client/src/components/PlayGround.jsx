@@ -72,7 +72,7 @@ export default function PlayGround() {
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
-      <div style={{ width: "100vw", height: "100vh" }}>
+      <div className="w-full h-[calc(100vh-4rem)]">
         <ReactFlow
           nodes={nodes}
           edges={edges}
