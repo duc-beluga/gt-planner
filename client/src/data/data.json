@@ -1,0 +1,19 @@
+[
+  {
+    "name": "CS 1331",
+    "postCoursesList": [
+      "CS 1332",
+      "CS 2340",
+      "CS 2110",
+      "CS 4625",
+      "CS 4641",
+      "CS 4464",
+      "CS 2261"
+    ]
+  },
+  {
+    "name": "CS 1332",
+    "postCoursesList": ["CS 3600", "CS 3510", "CS 3451", "CS 4649", "CS 4460"]
+  },
+  { "name": "CS 3510", "postCoursesList": ["CS 4510"] }
+]

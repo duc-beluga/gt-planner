@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Home = () => {
-  return (
-    <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl text-white">
+  const [majorSelected, setMajorSelected] = useState(false);
+
+  return !majorSelected ? (
+    <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       This is Home Page
       <div className="flex gap-2">
-        <button className="btn">Button 1</button>
-        <button className="btn">Button 2</button>
+        <select className="select select-bordered w-full max-w-xs">
+          <option disabled selected>
+            Major
+          </option>
+          <option>Computer Science</option>
+        </select>
+        <select className="select select-bordered w-full max-w-xs">
+          <option disabled selected>
+            Thread
+          </option>
+          <option>Media</option>
+        </select>
+        <select className="select select-bordered w-full max-w-xs">
+          <option disabled selected>
+            Thread
+          </option>
+          <option>Intelligence</option>
+        </select>
+      </div>
+      <div>
+        <button className="btn" onClick={() => setMajorSelected(true)}>
+          Build
+        </button>
       </div>
     </div>
+  ) : (
+    <h1>Hello World</h1>
   );
 };
 
