@@ -72,6 +72,9 @@ export default function PlayGround() {
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
+      <button className="btn absolute top-24 right-10 bg-white z-20">
+        Save
+      </button>
       <div className="w-full h-[calc(100vh-4rem)]">
         <ReactFlow
           nodes={nodes}
