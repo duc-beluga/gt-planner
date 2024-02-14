@@ -1,4 +1,4 @@
-# GT Planner
+# [GT Planner](https://gt-planner.onrender.com/)
 
 GT Planner is a website that provides students with a visual roadmap of their academic journey, making course planning clear and simple.
 
