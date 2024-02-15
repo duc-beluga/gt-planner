@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PlayGround from "../components/PlayGround";
-import { googleSignIn } from "../firebase/firebase";
 
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
@@ -8,9 +7,6 @@ const Home = () => {
   return !majorSelected ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       This is Home Page
-      <button className="btn" onClick={googleSignIn}>
-        Sign In With Google
-      </button>
       <div className="flex gap-2">
         <select className="select select-bordered w-full max-w-xs">
           <option>Major</option>

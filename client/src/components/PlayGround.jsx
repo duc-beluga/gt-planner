@@ -9,7 +9,7 @@ import ReactFlow, {
 } from "reactflow";
 
 import CourseSelectorNode from "../customNodes/CourseSelectorNode";
-import { FlowProvider } from "../context/FlowProvider";
+import { FlowProvider } from "../context/FlowContext";
 import coursesArray from "../data/data.json";
 import "reactflow/dist/style.css";
 
