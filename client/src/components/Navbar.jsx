@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { logOut, currentUser } = useAuth();
+  const { logOut, currentUser, logInWithGoogle } = useAuth();
+
   return (
-    <div className="navbar shadow-2xl top-0 bg-white gap-x-4 px-4">
+    <div className="navbar shadow-2xl bg-white">
       <div className="navbar-start">
-        <ul className="menu menu-horizontal rounded-box">
+        <ul className="menu menu-horizontal rounded-box font-semibold">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -24,17 +25,28 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal rounded-box">
-          {currentUser ? (
-            <li>
-              <button onClick={logOut}>Log Out</button>
-            </li>
-          ) : (
-            <li>
-              <Link to="/">Log In</Link>
-            </li>
-          )}
-        </ul>
+        {currentUser ? (
+          <button onClick={logOut} className="btn">
+            Log Out
+          </button>
+        ) : (
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
+              Login
+            </div>
+            <ul
+              tabindex="0"
+              class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+            >
+              <li>
+                <button onClick={logInWithGoogle}>Login with Google</button>
+              </li>
+              <li>
+                <Link to="/">Login with Github</Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
