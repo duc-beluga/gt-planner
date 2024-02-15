@@ -32,7 +32,11 @@ export const AuthProvider = ({ children }) => {
 
   //TODO: Add a spinner
   if (loading) {
-    return <h1> Loading...</h1>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <span class="loading loading-dots loading-lg"></span>
+      </div>
+    );
   }
   return (
     <AuthContext.Provider value={{ logInWithGoogle, logOut, currentUser }}>

@@ -7,7 +7,7 @@ const Home = () => {
 
   return !majorSelected ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
-      This is Home Page
+      <div className="my-10 font-bold">Craft Your Academic Adventure</div>
       <div className="flex gap-2">
         <select className="select select-bordered w-full max-w-xs">
           <option>Major</option>
