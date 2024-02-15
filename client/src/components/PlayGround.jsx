@@ -6,12 +6,14 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
+  Panel,
 } from "reactflow";
 
 import CourseSelectorNode from "../customNodes/CourseSelectorNode";
 import { FlowProvider } from "../context/FlowContext";
 import coursesArray from "../data/data.json";
 import "reactflow/dist/style.css";
+import DownloadButton from "./DownloadButton";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -72,9 +74,6 @@ export default function PlayGround() {
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
-      <button className="btn absolute top-24 right-10 bg-white z-20">
-        Save
-      </button>
       <div className="w-full h-[calc(100vh-4rem)]">
         <ReactFlow
           nodes={nodes}
@@ -87,6 +86,10 @@ export default function PlayGround() {
           <Controls />
           <MiniMap />
           <Background variant="dots" gap={12} size={1} />
+          <Panel position="top-right">
+            <button className="btn bg-white z-20">Save</button>
+          </Panel>
+          <DownloadButton />
         </ReactFlow>
       </div>
     </FlowProvider>
