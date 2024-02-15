@@ -10,9 +10,11 @@ const Navbar = () => {
         <Link to="/" className="p-2">
           Home
         </Link>
-        <Link to="/user" className="p-2">
-          User
-        </Link>
+        {currentUser && (
+          <Link to="/user" className="p-2">
+            User
+          </Link>
+        )}
       </div>
       {currentUser ? (
         <button onClick={logOut} className="p-2">
