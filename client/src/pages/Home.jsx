@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PlayGround from "../components/PlayGround";
+import { Wrench } from "lucide-react";
 
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
@@ -23,7 +24,7 @@ const Home = () => {
       </div>
       <div>
         <button className="btn" onClick={() => setMajorSelected(true)}>
-          Build
+          Build <Wrench />
         </button>
       </div>
     </div>
