@@ -24,9 +24,9 @@ export const AuthProvider = ({ children }) => {
     };
   });
 
-  const logInWithGoogle = () => {
+  const logInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    await signInWithRedirect(auth, provider);
   };
 
   const logOut = () => {

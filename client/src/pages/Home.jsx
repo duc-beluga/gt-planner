@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
   const { logInWithGoogle } = useAuth();
-  console.log(logInWithGoogle);
+
   return !majorSelected ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       This is Home Page
