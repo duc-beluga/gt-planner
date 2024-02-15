@@ -1,9 +1,12 @@
 import React from "react";
+import { useAuth } from "../context/AuthContext";
 
 const User = () => {
+  const { currentUser } = useAuth();
+
   return (
     <div className="flex justify-center items-center h-full text-5xl">
-      This is User Page
+      Hi {currentUser.displayName}
     </div>
   );
 };
