@@ -30,13 +30,17 @@ const Navbar = () => {
             Log Out
           </button>
         ) : (
-          <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost rounded-btn"
+            >
               Login
             </div>
             <ul
-              tabindex="0"
-              class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+              tabIndex={0}
+              className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
             >
               <li>
                 <button onClick={logInWithGoogle}>Login with Google</button>
