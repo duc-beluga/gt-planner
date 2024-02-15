@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth, googleProvider } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithRedirect,
+  signOut,
+} from "firebase/auth";
 
 const AuthContext = createContext();
 
@@ -8,30 +14,32 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user), setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
+      console.log("User", user);
     });
+    return () => {
+      unsubscribe();
+    };
+  });
 
-    return unsubscribe;
-  }, []);
-
-  const signInWithGoogle = () => {
-    return auth.signInWithRedirect(googleProvider);
+  const logInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
   };
 
-  const signOut = () => {
-    return auth.signOut();
+  const logOut = () => {
+    signOut(auth);
   };
 
-  const value = {
-    currentUser,
-    signInWithGoogle,
-    signOut,
-  };
-
+  //TODO: Add a spinner
+  if (loading) {
+    return <h1> Loading...</h1>;
+  }
   return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
+    <AuthContext.Provider value={{ logInWithGoogle, logOut, currentUser }}>
+      {children}
     </AuthContext.Provider>
   );
 };
