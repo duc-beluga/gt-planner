@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -25,6 +25,9 @@ const nodeTypes = { customNode: CourseSelectorNode };
 export default function PlayGround() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [rfInstance, setRfInstance] = useState(null);
+
+  const flowKey = "example-flow";
 
   useEffect(() => {
     createPostCourse(null, "Media & Intelligence");
@@ -72,6 +75,14 @@ export default function PlayGround() {
     [setEdges]
   );
 
+  const onSave = useCallback(() => {
+    if (rfInstance) {
+      const flow = rfInstance.toObject();
+      localStorage.setItem(flowKey, JSON.stringify(flow));
+      console.log(JSON.stringify(flow));
+    }
+  }, [rfInstance]);
+
   return (
     <FlowProvider createPostCourse={createPostCourse}>
       <div className="w-full h-[calc(100vh-4rem)]">
@@ -82,12 +93,15 @@ export default function PlayGround() {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           nodeTypes={nodeTypes}
+          onInit={setRfInstance}
         >
           <Controls />
           <MiniMap />
           <Background variant="dots" gap={12} size={1} />
           <Panel position="top-right">
-            <button className="btn bg-white z-20">Save</button>
+            <button className="btn bg-white z-20" onClick={onSave}>
+              Save
+            </button>
           </Panel>
           <DownloadButton />
         </ReactFlow>
