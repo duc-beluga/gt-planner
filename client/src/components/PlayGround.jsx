@@ -22,12 +22,10 @@ const postCourseDict = coursesArray.reduce((acc, course) => {
 
 const nodeTypes = { customNode: CourseSelectorNode };
 
-export default function PlayGround() {
+export default function PlayGround({ projectName }) {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [rfInstance, setRfInstance] = useState(null);
-
-  const flowKey = "example-flow";
 
   useEffect(() => {
     createPostCourse(null, "Media & Intelligence");
@@ -78,7 +76,7 @@ export default function PlayGround() {
   const onSave = useCallback(() => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      localStorage.setItem(flowKey, JSON.stringify(flow));
+      localStorage.setItem(projectName, JSON.stringify(flow));
       console.log(JSON.stringify(flow));
     }
   }, [rfInstance]);
@@ -102,6 +100,9 @@ export default function PlayGround() {
             <button className="btn bg-white z-20" onClick={onSave}>
               Save
             </button>
+          </Panel>
+          <Panel position="top-center">
+            <h2 className="btn bg-white">{projectName}</h2>
           </Panel>
           <DownloadButton />
         </ReactFlow>
