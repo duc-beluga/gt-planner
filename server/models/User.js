@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: True,
-        unique: True
+        required: true,
+        unique: true
     },
     savedPlans: {
-    type: [String], 
-    default: []     
-  }
+        type: [String],
+        default: []
+    }
 });
 
 const User = mongoose.model('User', userSchema);
