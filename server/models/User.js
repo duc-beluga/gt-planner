@@ -7,7 +7,10 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     savedPlans: {
-        type: [String],
+        type: [{
+            name: { type: String, required: true },
+            content: { type: String, required: true }
+        }],
         default: []
     }
 });
