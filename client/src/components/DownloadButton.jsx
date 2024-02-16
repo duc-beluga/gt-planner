@@ -5,7 +5,7 @@ import {
   getRectOfNodes,
   getTransformForBounds,
 } from "reactflow";
-import { toPng } from "html-to-image";
+import { toPng, toJpeg, toBlob } from "html-to-image";
 
 function downloadImage(dataUrl) {
   const a = document.createElement("a");
@@ -33,8 +33,8 @@ function DownloadButton() {
       2
     );
 
-    toPng(document.querySelector(".react-flow__viewport"), {
-      backgroundColor: "#1a365d",
+    toBlob(document.querySelector(".react-flow__viewport"), {
+      backgroundColor: "#FFFFFF",
       width: imageWidth,
       height: imageHeight,
       style: {
@@ -42,7 +42,7 @@ function DownloadButton() {
         height: imageHeight,
         transform: `translate(${transform[0]}px, ${transform[1]}px) scale(${transform[2]})`,
       },
-    }).then(downloadImage);
+    }).then((res) => console.log(res));
   };
 
   return (
