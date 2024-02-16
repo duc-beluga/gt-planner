@@ -21,6 +21,23 @@ const createUser = async (req, res) => {
     }
 }
 
+const addPlanToUser = async(req, res) => {
+    const { email, newPlan } = req.body;
+
+    const user = await User.findOneAndUpdate(
+        {email},
+        { $push: {savedPlans: newPlan}},
+        { new: true}
+    );
+
+    if (!user) {
+        return res.status(404).json({message: 'User not found'});
+    }
+
+    res.status(201).json({message: 'Plan added to saved plans', user: user})
+}
+
 export default {
-    createUser
+    createUser,
+    addPlanToUser
 }
