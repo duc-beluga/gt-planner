@@ -16,6 +16,7 @@ import "reactflow/dist/style.css";
 import DownloadButton from "./DownloadButton";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -86,7 +87,7 @@ export default function PlayGround({ projectName }) {
           content: JSON.stringify(flow),
         },
       });
-      console.log("Added New Plan Sucessful");
+      toast.success("Added New Plan Sucessful");
     }
   }, [rfInstance]);
 
