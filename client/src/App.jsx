@@ -6,10 +6,11 @@ import Navbar from "./components/Navbar";
 import SavedBuilt from "./pages/SavedBuilt";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
+import Selection from "./components/Selection"
 
 function App() {
   let routes = useRoutes([
-    { path: "/", element: <Home /> },
+    { path: "/", element: <Selection /> },
     { path: "/user", element: <User /> },
     { path: "/saved", element: <SavedBuilt /> },
   ]);

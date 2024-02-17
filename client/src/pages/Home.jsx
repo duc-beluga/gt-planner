@@ -7,7 +7,7 @@ const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
   const [projectName, setProjectName] = useState(false);
 
-  return !majorSelected || !projectName ? (
+  return !(majorSelected && projectName) ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       <div className="my-10 font-bold">Craft Your Academic Adventure</div>
       <div className="flex gap-2">
