@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -6,12 +6,14 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
+  Panel,
 } from "reactflow";
 
 import CourseSelectorNode from "../customNodes/CourseSelectorNode";
 import { FlowProvider } from "../context/FlowContext";
 import coursesArray from "../data/data.json";
 import "reactflow/dist/style.css";
+import DownloadButton from "./DownloadButton";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -20,9 +22,10 @@ const postCourseDict = coursesArray.reduce((acc, course) => {
 
 const nodeTypes = { customNode: CourseSelectorNode };
 
-export default function PlayGround() {
+export default function PlayGround({ projectName }) {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [rfInstance, setRfInstance] = useState(null);
 
   useEffect(() => {
     createPostCourse(null, "Media & Intelligence");
@@ -70,11 +73,16 @@ export default function PlayGround() {
     [setEdges]
   );
 
+  const onSave = useCallback(() => {
+    if (rfInstance) {
+      const flow = rfInstance.toObject();
+      localStorage.setItem(projectName, JSON.stringify(flow));
+      console.log(JSON.stringify(flow));
+    }
+  }, [rfInstance]);
+
   return (
     <FlowProvider createPostCourse={createPostCourse}>
-      <button className="btn absolute top-24 right-10 bg-white z-20">
-        Save
-      </button>
       <div className="w-full h-[calc(100vh-4rem)]">
         <ReactFlow
           nodes={nodes}
@@ -83,10 +91,20 @@ export default function PlayGround() {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           nodeTypes={nodeTypes}
+          onInit={setRfInstance}
         >
           <Controls />
           <MiniMap />
           <Background variant="dots" gap={12} size={1} />
+          <Panel position="top-right">
+            <button className="btn bg-white z-20" onClick={onSave}>
+              Save
+            </button>
+          </Panel>
+          <Panel position="top-center">
+            <h2 className="btn bg-white">{projectName}</h2>
+          </Panel>
+          <DownloadButton />
         </ReactFlow>
       </div>
     </FlowProvider>

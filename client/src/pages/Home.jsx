@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import PlayGround from "../components/PlayGround";
-import { Wrench } from "lucide-react";
+import PlanNamePopUp from "../components/PlanNamePopUp";
+import { PlusCircle } from "lucide-react";
 
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
+  const [projectName, setProjectName] = useState(false);
 
-  return !majorSelected ? (
+  return !majorSelected || !projectName ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       <div className="my-10 font-bold">Craft Your Academic Adventure</div>
       <div className="flex gap-2">
@@ -23,13 +25,20 @@ const Home = () => {
         </select>
       </div>
       <div>
-        <button className="btn" onClick={() => setMajorSelected(true)}>
-          Build <Wrench />
+        <button
+          className="btn"
+          onClick={() => {
+            setMajorSelected(true);
+            document.getElementById("plan-name").showModal();
+          }}
+        >
+          Create New Plan <PlusCircle />
         </button>
+        <PlanNamePopUp setProjectName={setProjectName} />
       </div>
     </div>
   ) : (
-    <PlayGround />
+    <PlayGround projectName={projectName} />
   );
 };
 

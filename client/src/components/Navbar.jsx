@@ -24,7 +24,7 @@ const Navbar = () => {
           )}
           {currentUser && (
             <li>
-              <Link to="/user">
+              <Link to="/saved">
                 <Save />
               </Link>
             </li>
