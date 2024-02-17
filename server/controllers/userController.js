@@ -9,15 +9,15 @@ const createUser = async (req, res) => {
     const duplicate = await User.findOne({email})
 
     if (duplicate) {
-        return res.status(409).json({message: 'Email already existed'})
+        return res.status(201).json({message: 'Email already existed'})
     }
 
     const user = await User.create({email, savedPlans})
     
     if (user) { 
-        res.status(201).json({ message: `User ${email} created` })
+        return res.status(201).json({ message: `User ${email} created` })
     } else {
-        res.status(400).json({ message: 'Invalid user data received' })
+        return res.status(400).json({ message: 'Invalid user data received' })
     }
 }
 
