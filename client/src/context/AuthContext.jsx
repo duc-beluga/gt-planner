@@ -6,6 +6,7 @@ import {
   signInWithRedirect,
   signOut,
 } from "firebase/auth";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -24,6 +25,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      if (user !== null) {
+        axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user`, {
+          email: user.email,
+        });
+      }
       setLoading(false);
       console.log("User", user);
     });

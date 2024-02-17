@@ -14,6 +14,9 @@ import { FlowProvider } from "../context/FlowContext";
 import coursesArray from "../data/data.json";
 import "reactflow/dist/style.css";
 import DownloadButton from "./DownloadButton";
+import { useAuth } from "../context/AuthContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -26,7 +29,7 @@ export default function PlayGround({ projectName }) {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [rfInstance, setRfInstance] = useState(null);
-
+  const { currentUser } = useAuth();
   useEffect(() => {
     createPostCourse(null, "Media & Intelligence");
   }, []);
@@ -77,7 +80,14 @@ export default function PlayGround({ projectName }) {
     if (rfInstance) {
       const flow = rfInstance.toObject();
       localStorage.setItem(projectName, JSON.stringify(flow));
-      console.log(JSON.stringify(flow));
+      axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/addPlan`, {
+        email: currentUser.email,
+        newPlan: {
+          name: projectName,
+          content: JSON.stringify(flow),
+        },
+      });
+      toast.success("Added New Plan Sucessful");
     }
   }, [rfInstance]);
 
