@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "postinstall": "concurrently npm:postinstall:*",
+    "postinstall:server": "cd server && npm install",
+    "postinstall:client": "cd client && npm install",
+    "start": "concurrently npm:start:*",
+    "start:client": "cd client && npm run dev",
+    "start:server": "cd server && npm start"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
