@@ -20,7 +20,7 @@ const SavedBuilt = () => {
       This page contains all saved builts
       <div className="grid grid-cols-3 gap-4">
         {savedPlans.map((plan) => (
-          <BuiltCard />
+          <BuiltCard planName={plan.name} />
         ))}
         {/* <BuiltCard /> */}
         {/* <BuiltCard /> */}
