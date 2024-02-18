@@ -8,8 +8,6 @@ const SavedBuilt = () => {
       <div className="grid grid-cols-4 gap-4">
         <BuiltCard />
         <BuiltCard />
-        <BuiltCard />
-        <BuiltCard />
       </div>
     </div>
   );
