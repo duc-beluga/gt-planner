@@ -106,11 +106,13 @@ export default function PlayGround({ projectName }) {
           <Controls />
           <MiniMap />
           <Background variant="dots" gap={12} size={1} />
-          <Panel position="top-right">
-            <button className="btn bg-white z-20" onClick={onSave}>
-              Save
-            </button>
-          </Panel>
+          {currentUser && (
+            <Panel position="top-right">
+              <button className="btn bg-white z-20" onClick={onSave}>
+                Save
+              </button>
+            </Panel>
+          )}
           <Panel position="top-center">
             <h2 className="btn bg-white">{projectName}</h2>
           </Panel>

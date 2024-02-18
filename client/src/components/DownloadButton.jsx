@@ -9,7 +9,6 @@ import { toPng } from "html-to-image";
 
 function downloadImage(dataUrl) {
   const a = document.createElement("a");
-  console.log(dataUrl);
   a.setAttribute("download", "reactflow.png");
   a.setAttribute("href", dataUrl);
   a.click();
