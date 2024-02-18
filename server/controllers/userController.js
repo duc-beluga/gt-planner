@@ -39,12 +39,18 @@ const addPlanToUser = async(req, res) => {
 
 const getUserPlans = async(req, res) => {
     const {email} = req.body
-
-    const user = await User.findOne({email})
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
-    res.status(200).json(user.savedPlans);
+    try {
+        console.log('1')
+        const user = await User.findOne({email})
+        if (!user) {
+            console.log('2')
+            return res.status(404).json({ message: 'User not found' });
+        }
+        return res.status(200).json(user.savedPlans);
+    } catch (err) {
+        console.log(err.message)
+        return res.status(500).json({message: 'Server err', error: err.message})
+    }    
 }
 
 export default {
