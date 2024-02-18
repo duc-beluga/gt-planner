@@ -14,16 +14,3 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
-
-// export const googleSignIn = () => {
-
-//   signInWithRedirect(auth, googleProvider)
-//     .then((result) => {
-//       console.log(result.user.displayName);
-//       console.log(result.user.email);
-//       console.log(result.user.photoURL);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };

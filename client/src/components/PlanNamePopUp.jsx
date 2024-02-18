@@ -3,9 +3,8 @@ import { Wrench } from "lucide-react";
 
 const PlanNamePopUp = ({ setProjectName }) => {
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent the form from refreshing the page
-    console.log(event);
-    setProjectName(event.target[0].value); // Update the parent state with the input value
+    event.preventDefault();
+    setProjectName(event.target[0].value);
   };
 
   return (
