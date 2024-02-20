@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }) => {
         });
       }
       setLoading(false);
-      console.log("User", user);
     });
     return unsubscribe;
   }, []);
