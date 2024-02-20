@@ -63,17 +63,25 @@ The website is a fun, interactive space to plan your semesters. Design your acad
 
 **User Table**
 
-| Field    | Type   | Required |
-|----------|--------|----------|
-| username | String | Yes      |
-| password | String | Yes      |
+| Field      | Type     | Required |
+|------------|----------|----------|
+| email      | String   | Yes      |
+| savedPlans | Array    | No       |
+
+**SavedPlans Object**
+
+| Field   | Type   | Required |
+|---------|--------|----------|
+| name    | String | Yes      |
+| content | String | Yes      |
 
 **Course Table**
 
 | Field         | Type         | Required |
 |---------------|--------------|----------|
 | title         | String       | Yes      |
-| prerequisites | course_ID[] | No       |
+| prerequisites | Array | No       |
+| postrequisites | Array | No       |
 
 ## Wireframes
 
