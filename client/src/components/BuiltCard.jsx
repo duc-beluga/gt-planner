@@ -13,9 +13,7 @@ const BuiltCard = ({ plan, setPlanChosen, deletePlan }) => {
           </button>
           <button
             className="btn btn-outline btn-info"
-            onClick={() => {
-              setPlanChosen(JSON.parse(plan.content));
-            }}
+            onClick={() => setPlanChosen(JSON.parse(plan.content))}
           >
             Build
           </button>

@@ -37,9 +37,6 @@ export default function PlayGround({
   useEffect(() => {
     if (initialNodes.length === 0) {
       createPostCourse(null, "Media & Intelligence");
-    } else {
-      setNodes(initialNodes);
-      setEdges(initialEdges);
     }
   }, []);
 
