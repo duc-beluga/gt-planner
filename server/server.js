@@ -3,13 +3,13 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import path from "path";
-import { fileURLToPath } from "url";
+// import { fileURLToPath } from "url";
 
 import { connectDB } from "./config/dbConn.js";
 import userRouter from "./routes/userRoutes.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -21,11 +21,11 @@ app.use(helmet());
 
 app.use("/api/user", userRouter);
 
-app.use(express.static(path.join(__dirname, "dist")));
+// app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
 
 const PORT = process.env.PORT || 3000;
 
