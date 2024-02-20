@@ -46,6 +46,7 @@ const SavedBuilt = () => {
     </div>
   ) : (
     <PlayGround
+      projectName={planChosen.name}
       initialNodes={planChosen.nodes}
       initialEdges={planChosen.edges}
     />
