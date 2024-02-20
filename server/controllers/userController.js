@@ -48,7 +48,8 @@ const getUserPlans = async(req, res) => {
 
 const deleteUserPlan = async(req, res) => {
     const {email, planName} = req.body
-    
+    console.log(email)
+    console.log(planName)
     const user = await User.findOneAndUpdate(
         { email },
         { $pull: { savedPlans: { name: planName } } },
