@@ -25,13 +25,19 @@ const postCourseDict = coursesArray.reduce((acc, course) => {
 
 const nodeTypes = { customNode: CourseSelectorNode };
 
-export default function PlayGround({ projectName }) {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+export default function PlayGround({
+  projectName,
+  initialNodes,
+  initialEdges,
+}) {
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [rfInstance, setRfInstance] = useState(null);
   const { currentUser } = useAuth();
   useEffect(() => {
-    createPostCourse(null, "Media & Intelligence");
+    if (initialNodes.length === 0) {
+      createPostCourse(null, "Media & Intelligence");
+    }
   }, []);
 
   const createPostCourse = useCallback((prevCourseId, curCourse) => {

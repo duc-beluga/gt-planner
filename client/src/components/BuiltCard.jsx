@@ -1,13 +1,24 @@
-import React from "react";
-
-const BuiltCard = () => {
+const BuiltCard = ({ plan, setPlanChosen, deletePlan }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body">
-        <h3 className="card-title">Media and Intelligence</h3>
+        <h3 className="card-title">{plan.name}</h3>
 
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Build</button>
+        <div className="card-actions justify-between">
+          <button
+            className="btn btn-outline btn-error"
+            onClick={() => deletePlan(plan.name)}
+          >
+            Delete
+          </button>
+          <button
+            className="btn btn-outline btn-info"
+            onClick={() => {
+              setPlanChosen({ name: plan.name, ...JSON.parse(plan.content) });
+            }}
+          >
+            Build
+          </button>
         </div>
       </div>
     </div>

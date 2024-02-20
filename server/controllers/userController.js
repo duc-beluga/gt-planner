@@ -39,16 +39,31 @@ const addPlanToUser = async(req, res) => {
 
 const getUserPlans = async(req, res) => {
     const {email} = req.body
-
     const user = await User.findOne({email})
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
-    res.status(200).json(user.savedPlans);
+    return res.status(200).json(user.savedPlans);
+}
+
+const deleteUserPlan = async(req, res) => {
+    const {email, planName} = req.body
+    const user = await User.findOneAndUpdate(
+        { email },
+        { $pull: { savedPlans: { name: planName } } },
+        { new: true }
+    );
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'Plan removed from saved plans', user: user });
 }
 
 export default {
     createUser,
     addPlanToUser,
-    getUserPlans
+    getUserPlans,
+    deleteUserPlan
 }
