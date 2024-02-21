@@ -18,7 +18,7 @@ const SavedBuilt = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const deletePlan = (planName) => {
+  const onDeletePlan = (planName) => {
     setSavedPlans(savedPlans.filter((plan) => plan.name != planName));
     axios
       .delete(`${import.meta.env.VITE_SERVER_URL}/api/user/deletePlan`, {
@@ -39,7 +39,7 @@ const SavedBuilt = () => {
             key={plan.name}
             plan={plan}
             setPlanChosen={setPlanChosen}
-            deletePlan={deletePlan}
+            onDeletePlan={onDeletePlan}
           />
         ))}
       </div>
