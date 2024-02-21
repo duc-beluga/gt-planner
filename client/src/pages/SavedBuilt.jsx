@@ -6,7 +6,7 @@ import axios from "axios";
 
 const SavedBuilt = () => {
   const [savedPlans, setSavedPlans] = useState([]);
-  const [planChosen, setPlanChosen] = useState(null);
+  const [planBuildChosen, setPlanBuildChosen] = useState(null);
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const SavedBuilt = () => {
       .catch((err) => console.log(err));
   };
 
-  return !planChosen ? (
+  return !planBuildChosen ? (
     <div className="flex flex-col justify-center items-center h-full text-5xl gap-y-5">
       This page contains all saved builts
       <div className="grid grid-cols-3 gap-4">
@@ -38,7 +38,7 @@ const SavedBuilt = () => {
           <BuiltCard
             key={plan.name}
             plan={plan}
-            setPlanChosen={setPlanChosen}
+            setPlanBuildChosen={setPlanBuildChosen}
             onDeletePlan={onDeletePlan}
           />
         ))}
@@ -46,9 +46,9 @@ const SavedBuilt = () => {
     </div>
   ) : (
     <PlayGround
-      projectName={planChosen.name}
-      initialNodes={planChosen.nodes}
-      initialEdges={planChosen.edges}
+      projectName={planBuildChosen.name}
+      initialNodes={planBuildChosen.nodes}
+      initialEdges={planBuildChosen.edges}
     />
   );
 };
