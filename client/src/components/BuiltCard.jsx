@@ -13,7 +13,6 @@ const BuiltCard = ({
           <button
             className="btn btn-outline btn-error"
             onClick={() => {
-              // onDeletePlan(plan.name)
               document.getElementById("confirmation-pop-up").showModal();
               setPlanDeleteChosen(plan.name);
             }}
