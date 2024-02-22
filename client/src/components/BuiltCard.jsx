@@ -1,9 +1,4 @@
-const BuiltCard = ({
-  plan,
-  onDeletePlan,
-  setPlanChosen,
-  setPlanDeleteChosen,
-}) => {
+const BuiltCard = ({ plan, setPlanBuildChosen, setPlanDeleteChosen }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body">
@@ -22,7 +17,10 @@ const BuiltCard = ({
           <button
             className="btn btn-outline btn-info"
             onClick={() => {
-              setPlanChosen({ name: plan.name, ...JSON.parse(plan.content) });
+              setPlanBuildChosen({
+                name: plan.name,
+                ...JSON.parse(plan.content),
+              });
             }}
           >
             Build
