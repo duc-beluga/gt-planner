@@ -3,10 +3,12 @@ import BuiltCard from "../components/BuiltCard";
 import { useAuth } from "../context/AuthContext";
 import PlayGround from "../components/PlayGround";
 import axios from "axios";
+import ConfirmationPopUp from "../components/ConfirmationPopUp";
 
 const SavedBuilt = () => {
   const [savedPlans, setSavedPlans] = useState([]);
   const [planBuildChosen, setPlanBuildChosen] = useState(null);
+  const [planDeleteChosen, setPlanDeleteChosen] = useState(null);
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -39,9 +41,14 @@ const SavedBuilt = () => {
             key={plan.name}
             plan={plan}
             setPlanBuildChosen={setPlanBuildChosen}
+            setPlanDeleteChosen={setPlanDeleteChosen}
             onDeletePlan={onDeletePlan}
           />
         ))}
+        <ConfirmationPopUp
+          planDeleteChosen={planDeleteChosen}
+          onDeletePlan={onDeletePlan}
+        />
       </div>
     </div>
   ) : (

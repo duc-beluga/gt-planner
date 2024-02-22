@@ -1,4 +1,9 @@
-const BuiltCard = ({ plan, setPlanChosen, onDeletePlan }) => {
+const BuiltCard = ({
+  plan,
+  onDeletePlan,
+  setPlanChosen,
+  setPlanDeleteChosen,
+}) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body">
@@ -7,7 +12,11 @@ const BuiltCard = ({ plan, setPlanChosen, onDeletePlan }) => {
         <div className="card-actions justify-between">
           <button
             className="btn btn-outline btn-error"
-            onClick={() => onDeletePlan(plan.name)}
+            onClick={() => {
+              // onDeletePlan(plan.name)
+              document.getElementById("confirmation-pop-up").showModal();
+              setPlanDeleteChosen(plan.name);
+            }}
           >
             Delete
           </button>
