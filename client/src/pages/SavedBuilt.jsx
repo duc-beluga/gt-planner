@@ -3,10 +3,12 @@ import BuiltCard from "../components/BuiltCard";
 import { useAuth } from "../context/AuthContext";
 import PlayGround from "../components/PlayGround";
 import axios from "axios";
+import ConfirmationPopUp from "../components/ConfirmationPopUp";
 
 const SavedBuilt = () => {
   const [savedPlans, setSavedPlans] = useState([]);
-  const [planChosen, setPlanChosen] = useState(null);
+  const [planBuildChosen, setPlanBuildChosen] = useState(null);
+  const [planDeleteChosen, setPlanDeleteChosen] = useState(null);
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const SavedBuilt = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const deletePlan = (planName) => {
+  const onDeletePlan = (planName) => {
     setSavedPlans(savedPlans.filter((plan) => plan.name != planName));
     axios
       .delete(`${import.meta.env.VITE_SERVER_URL}/api/user/deletePlan`, {
@@ -30,7 +32,7 @@ const SavedBuilt = () => {
       .catch((err) => console.log(err));
   };
 
-  return !planChosen ? (
+  return !planBuildChosen ? (
     <div className="flex flex-col justify-center items-center h-full text-5xl gap-y-5">
       This page contains all saved builts
       <div className="grid grid-cols-3 gap-4">
@@ -38,17 +40,22 @@ const SavedBuilt = () => {
           <BuiltCard
             key={plan.name}
             plan={plan}
-            setPlanChosen={setPlanChosen}
-            deletePlan={deletePlan}
+            setPlanBuildChosen={setPlanBuildChosen}
+            setPlanDeleteChosen={setPlanDeleteChosen}
+            onDeletePlan={onDeletePlan}
           />
         ))}
+        <ConfirmationPopUp
+          planDeleteChosen={planDeleteChosen}
+          onDeletePlan={onDeletePlan}
+        />
       </div>
     </div>
   ) : (
     <PlayGround
-      projectName={planChosen.name}
-      initialNodes={planChosen.nodes}
-      initialEdges={planChosen.edges}
+      projectName={planBuildChosen.name}
+      initialNodes={planBuildChosen.nodes}
+      initialEdges={planBuildChosen.edges}
     />
   );
 };
