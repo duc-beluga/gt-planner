@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.courses-taken-container {
+    display: flex;
+    width: 100%;
+  }
+
+  body {
+    background-color: white;
+  }
+  
+  .left-half {
+    width: 50%; /* Left half */
+    margin: 50px;
+    margin-left: 0px;
+  }
+  
+  .right-half {
+    width: 50%; /* Right half */
+    margin: 50px;
+    margin-left: 100px;
+  }
+  
+  .courses-taken-title{
+    width: 676px;
+    height: 42.95px;
+    font-size: 25px;
+    margin: 10px;
+    word-spacing: 2px;
+    letter-spacing: .1px;
+    font-family: inter;
+  }
+
+  .title-selected-classes{
+    width: 676px;
+    height: 42.95px;
+    font-size: 15px;
+    margin: 30px;
+    margin-left: 10px;
+    word-spacing: 2px;
+    letter-spacing: .1px;
+    font-family: inter;
+    position: relative; 
+    top: 18px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .dropdown {
+    margin-top: 20px;
+  }
+  
+  
+  .selected-classes {
+    padding: 14px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-family: inter;
+    width: 500px;
+  }
+  
+  .selected-classes li {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Add space between items */
+    padding: 14px;
+    border-radius: 10px;
+    font-family: inter;
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 1px solid #dddddd;
+  }
+  
+  .selected-classes button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: red; /* Optional: Change color of "X" */
+  }
+  
+  
+  
+  /* .selected-classes:hover {
+    background-color: #e0e0e0;
+  } */
+  
+  /* .selected-classes li {
+    padding: 14px;
+  } */
+  
+  /* .selected-classes li:hover {
+    background-color: #e0e0e0;
+  } */
+  
+  /* .selected-classes button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  } */
+  
+ 
+  
+  
+
+  .search-bar input {
+    padding: 20px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid #B2B2B2;
+    color: #6F6F6F;
+    margin-right: 10px;
+    width: 500px;
+    height: 60px;
+    padding: 12.26px, 15.33px, 12.26px, 15.33px;
+    border-radius: 12.26px;
+  }
+  
+  .search-icon {
+    font-size: 20px;
+    color: #555;
+  }
+  
+  .dropdown-item {
+    padding: 14px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-family: inter;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #e0e0e0;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid rgb(255, 255, 255);
+    max-height: 400px;
+    overflow-y: auto;
+    width: 500px;
+    margin-top: 5px;
+  }
+  
+  .dropdown.show {
+    display: block; /* Display the dropdown when the 'show' class is added */
+  }
+
+
+  .save-button {
+    position: absolute;
+    bottom: 60px;
+    right: 120px;
+    background-color: rgb(50, 50, 50);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 230px;
+    height: 45px;
+    border-radius: 10.23px;
+  }
+  
+  .save-button:hover {
+    background-color: rgb(148, 148, 148);
+  }
+  
