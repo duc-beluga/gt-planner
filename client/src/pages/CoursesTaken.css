@@ -1,178 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+/* Import Tailwind CSS styles */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Additional custom styles */
+/* You can replace existing styles with Tailwind equivalents */
 .courses-taken-container {
-    display: flex;
-    width: 100%;
-  }
+  @apply flex w-full;
+}
 
-  body {
-    background-color: white;
-  }
-  
-  .left-half {
-    width: 50%; /* Left half */
-    margin: 50px;
-    margin-left: 0px;
-  }
-  
-  .right-half {
-    width: 50%; /* Right half */
-    margin: 50px;
-    margin-left: 100px;
-  }
-  
-  .courses-taken-title{
-    width: 676px;
-    height: 42.95px;
-    font-size: 25px;
-    margin: 10px;
-    word-spacing: 2px;
-    letter-spacing: .1px;
-    font-family: inter;
-  }
+.left-half {
+  @apply w-1/2 m-4;
+}
 
-  .title-selected-classes{
-    width: 676px;
-    height: 42.95px;
-    font-size: 15px;
-    margin: 30px;
-    margin-left: 10px;
-    word-spacing: 2px;
-    letter-spacing: .1px;
-    font-family: inter;
-    position: relative; 
-    top: 18px;
-  }
+.right-half {
+  @apply w-1/2 m-4 ml-16;
+}
 
-  .search-bar {
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  .dropdown {
-    margin-top: 20px;
-  }
-  
-  
-  .selected-classes {
-    padding: 14px;
-    cursor: pointer;
-    background-color: #ffffff;
-    border-radius: 10px;
-    margin-bottom: 5px;
-    font-family: inter;
-    width: 500px;
-  }
-  
-  .selected-classes li {
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Add space between items */
-    padding: 14px;
-    border-radius: 10px;
-    font-family: inter;
-    background-color: #ffffff;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border: 1px solid #dddddd;
-  }
-  
-  .selected-classes button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: red; /* Optional: Change color of "X" */
-  }
-  
-  
-  
-  /* .selected-classes:hover {
-    background-color: #e0e0e0;
-  } */
-  
-  /* .selected-classes li {
-    padding: 14px;
-  } */
-  
-  /* .selected-classes li:hover {
-    background-color: #e0e0e0;
-  } */
-  
-  /* .selected-classes button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  } */
-  
- 
-  
-  
+.courses-taken-title {
+  @apply w-676 h-42.95 font-inter font-normal text-2xl m-4 word-spacing-2px letter-spacing-0.1px;
+}
 
-  .search-bar input {
-    padding: 20px;
-    font-size: 17px;
-    border-radius: 5px;
-    border: 1px solid #B2B2B2;
-    color: #6F6F6F;
-    margin-right: 10px;
-    width: 500px;
-    height: 60px;
-    padding: 12.26px, 15.33px, 12.26px, 15.33px;
-    border-radius: 12.26px;
-  }
-  
-  .search-icon {
-    font-size: 20px;
-    color: #555;
-  }
-  
-  .dropdown-item {
-    padding: 14px;
-    cursor: pointer;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    margin-bottom: 5px;
-    font-family: inter;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #e0e0e0;
-  }
+.title-selected-classes {
+  @apply w-676 h-42.95 font-inter font-normal text-base m-4 ml-4 word-spacing-2px letter-spacing-0.1px relative top-4;
+}
 
-  .dropdown {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid rgb(255, 255, 255);
-    max-height: 400px;
-    overflow-y: auto;
-    width: 500px;
-    margin-top: 5px;
-  }
-  
-  .dropdown.show {
-    display: block; /* Display the dropdown when the 'show' class is added */
-  }
+.search-bar {
+  @apply flex items-center;
+}
 
+.dropdown {
+  @apply mt-5;
+}
 
-  .save-button {
-    position: absolute;
-    bottom: 60px;
-    right: 120px;
-    background-color: rgb(50, 50, 50);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    width: 230px;
-    height: 45px;
-    border-radius: 10.23px;
-  }
-  
-  .save-button:hover {
-    background-color: rgb(148, 148, 148);
-  }
-  
+.selected-classes {
+  @apply p-4 cursor-pointer bg-white rounded-lg mb-5 font-inter w-500;
+}
+
+.selected-classes li {
+  @apply flex items-center justify-between p-4 rounded-lg bg-white mb-5 cursor-pointer border border-gray-300;
+}
+
+.selected-classes button {
+  @apply bg-transparent border-none cursor-pointer text-red-500;
+}
+
+.search-bar input {
+  @apply p-4 text-lg rounded-md border border-gray-300 text-gray-700 mr-4 w-500 h-16;
+}
+
+.search-icon {
+  @apply text-lg text-gray-700;
+}
+
+.dropdown-item {
+  @apply p-4 cursor-pointer bg-gray-100 rounded-lg mb-5 font-inter;
+}
+
+.dropdown {
+  @apply hidden absolute bg-white border border-white max-h-400 overflow-y-auto w-500 mt-2;
+}
+
+.dropdown.show {
+  @apply block;
+}
+
+.save-button {
+  @apply absolute bottom-16 right-32 bg-gray-800 text-white border-none px-8 py-4 cursor-pointer rounded-md transition duration-300 ease-in-out w-56 h-16;
+}
+
+.save-button:hover {
+  @apply bg-gray-600;
+}

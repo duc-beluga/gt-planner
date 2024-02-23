@@ -47,7 +47,7 @@ const CoursesTaken = () => {
     <div className="courses-taken-container">
       <div className="right-half">
         <h2 className="courses-taken-title">Courses Taken</h2>
-        <div className="search-bar" onClick={toggleDropdown}>
+        <div className="search-bar relative">
           {/* Click handler added to toggle dropdown */}
           <input
             type="text"
@@ -55,29 +55,30 @@ const CoursesTaken = () => {
             onChange={handleSearchChange}
             onClick={toggleDropdown}
             placeholder="Search Courses"
+            className="search-input"
           />
           <div className="search-icon">
             <i className="fas fa-search"></i>
           </div>
+          {/* Conditionally render dropdown based on state */}
+          {dropdownVisible && (
+            <div className="dropdown absolute">
+              {classes
+                .filter((className) =>
+                  className.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .map((className, index) => (
+                  <div
+                    key={index}
+                    className="dropdown-item"
+                    onClick={() => handleSelectClass(className)}
+                  >
+                    {className}
+                  </div>
+                ))}
+            </div>
+          )}
         </div>
-        {/* Conditionally render dropdown based on state */}
-        {dropdownVisible && (
-          <div className="dropdown">
-            {classes
-              .filter((className) =>
-                className.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((className, index) => (
-                <div
-                  key={index}
-                  className="dropdown-item"
-                  onClick={() => handleSelectClass(className)}
-                >
-                  {className}
-                </div>
-              ))}
-          </div>
-        )}
         <button className="save-button" onClick={handleSave}>
           Save
         </button>
