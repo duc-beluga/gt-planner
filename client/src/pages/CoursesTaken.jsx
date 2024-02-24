@@ -24,14 +24,14 @@ const CoursesTaken = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSelectClass = (className) => {
-    if (!selectedClasses.includes(className)) {
-      setSelectedClasses([...selectedClasses, className]);
+  const handleSelectClass = (courseName) => {
+    if (!selectedClasses.includes(courseName)) {
+      setSelectedClasses([...selectedClasses, courseName]);
     }
   };
 
-  const handleRemoveClass = (className) => {
-    setSelectedClasses(selectedClasses.filter((c) => c !== className));
+  const handleRemoveClass = (courseName) => {
+    setSelectedClasses(selectedClasses.filter((c) => c !== courseName));
   };
 
   const handleSave = () => {
@@ -65,16 +65,16 @@ const CoursesTaken = () => {
           <div className="absolute mt-1 w-96 bg-white rounded-lg overflow-y-auto max-h-80">
             {" "}
             {classes
-              .filter((className) =>
-                className.toLowerCase().includes(searchTerm.toLowerCase())
+              .filter((courseName) =>
+                courseName.toLowerCase().includes(searchTerm.toLowerCase())
               )
-              .map((className, index) => (
+              .map((courseName, index) => (
                 <div
                   key={index}
                   className="p-3 cursor-pointer rounded-lg my-1 bg-gray-100 hover:bg-gray-300"
-                  onClick={() => handleSelectClass(className)}
+                  onClick={() => handleSelectClass(courseName)}
                 >
-                  {className}
+                  {courseName}
                 </div>
               ))}
           </div>
@@ -90,15 +90,15 @@ const CoursesTaken = () => {
         <h2 className="font-medium my-8 ml-2">Your Classes</h2>{" "}
         <div className="bg-white w-96 h-96 overflow-y-auto">
           {" "}
-          {selectedClasses.map((className, index) => (
+          {selectedClasses.map((courseName, index) => (
             <div
               key={index}
               className="p-3 border border-gray-300 rounded-lg my-1 flex items-center justify-between"
             >
               {" "}
-              <span>{className}</span>{" "}
+              <span>{courseName}</span>{" "}
               <button
-                onClick={() => handleRemoveClass(className)}
+                onClick={() => handleRemoveClass(courseName)}
                 className="text-red-500 ml-auto"
               >
                 x
