@@ -7,6 +7,5 @@ router.route("/").post(userController.createUser);
 router.route("/addPlan").post(userController.addPlanToUser);
 router.route("/deletePlan").delete(userController.deleteUserPlan);
 router.route("/getPlans").post(userController.getUserPlans);
-router.route("/getPlan").post(userController.getUserPlan);
 
 export default router;

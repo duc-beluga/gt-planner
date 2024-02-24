@@ -24,17 +24,25 @@ const createUser = async (req, res) => {
 const addPlanToUser = async (req, res) => {
   const { email, newPlan } = req.body;
 
-  const user = await User.findOneAndUpdate(
-    { email },
-    { $push: { savedPlans: newPlan } },
-    { new: true }
-  );
+  const user = await User.findOne({ email });
 
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
 
-  res.status(201).json({ message: "Plan added to saved plans", user: user });
+  const planExists = user.savedPlans.some(plan => plan.name === newPlan.name);
+
+  if (planExists) {
+    return res.status(409).json({ message: "Plan with the same name already exists" });
+  }
+
+  const updatedUser = await User.findOneAndUpdate(
+    { email },
+    { $push: { savedPlans: newPlan } },
+    { new: true }
+  );
+
+  res.status(201).json({ message: "Plan added to saved plans", user: updatedUser });
 };
 
 const getUserPlans = async (req, res) => {
@@ -46,21 +54,6 @@ const getUserPlans = async (req, res) => {
     return res.status(404).json({ message: "User not found" });
   }
   return res.status(200).json(user.savedPlans);
-};
-
-// The payload is large. We only need True/False values
-const getUserPlan = async (req, res) => {
-  const { email, planName } = req.body;
-
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
-
-  const plan = user.savedPlans.find((plan) => plan.name === planName);
-
-  res.status(200).json({ plan });
 };
 
 const deleteUserPlan = async (req, res) => {
@@ -86,5 +79,4 @@ export default {
   addPlanToUser,
   getUserPlans,
   deleteUserPlan,
-  getUserPlan,
 };

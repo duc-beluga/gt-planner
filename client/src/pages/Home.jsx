@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import PlayGround from "../components/PlayGround";
-import PlanNamePopUp from "../components/PlanNamePopUp";
 import { PlusCircle } from "lucide-react";
 
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
-  const [projectName, setProjectName] = useState(false);
 
-  return !majorSelected || !projectName ? (
+  return !majorSelected ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       <div className="my-10 font-bold">
         <p className="bg-gradient-to-r from-yellow-400 to-black text-transparent bg-clip-text">
@@ -33,16 +31,14 @@ const Home = () => {
           className="btn"
           onClick={() => {
             setMajorSelected(true);
-            document.getElementById("plan-name").showModal();
           }}
         >
           Create New Plan <PlusCircle />
         </button>
-        <PlanNamePopUp setProjectName={setProjectName} />
       </div>
     </div>
   ) : (
-    <PlayGround projectName={projectName} initialNodes={[]} initialEdges={[]} />
+    <PlayGround projectName={""} initialNodes={[]} initialEdges={[]} />
   );
 };
 
