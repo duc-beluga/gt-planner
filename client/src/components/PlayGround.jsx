@@ -16,7 +16,7 @@ import "reactflow/dist/style.css";
 import DownloadButton from "./DownloadButton";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
-import toast from "react-hot-toast";
+import PlanNamePopUp from "./PlanNamePopUp";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -82,20 +82,9 @@ export default function PlayGround({
     [setEdges]
   );
 
-  const onSave = useCallback(() => {
-    if (rfInstance) {
-      const flow = rfInstance.toObject();
-      localStorage.setItem(projectName, JSON.stringify(flow));
-      axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/addPlan`, {
-        email: currentUser.email,
-        newPlan: {
-          name: projectName,
-          content: JSON.stringify(flow),
-        },
-      });
-      toast.success("Added New Plan Sucessful");
-    }
-  }, [rfInstance]);
+  const onSave = () => {
+    document.getElementById("plan-name").showModal();
+  };
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
@@ -124,6 +113,7 @@ export default function PlayGround({
           </Panel>
           <DownloadButton />
         </ReactFlow>
+        <PlanNamePopUp rfInstance={rfInstance} currentUser={currentUser} />
       </div>
     </FlowProvider>
   );
