@@ -3,7 +3,6 @@ import React, { useState } from "react";
 const CoursesTaken = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedClasses, setSelectedClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false); // State to manage dropdown visibility
   const classes = [
     "CS 1301",
@@ -29,7 +28,6 @@ const CoursesTaken = () => {
     if (!selectedClasses.includes(className)) {
       setSelectedClasses([...selectedClasses, className]);
     }
-    setSelectedClass(className);
   };
 
   const handleRemoveClass = (className) => {
