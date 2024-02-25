@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import User from "./pages/User";
 import Navbar from "./components/Navbar";
 import SavedBuilt from "./pages/SavedBuilt";
+import CoursesTaken from "./pages/CourseTaken";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 
@@ -12,6 +13,7 @@ function App() {
     { path: "/", element: <Home /> },
     { path: "/user", element: <User /> },
     { path: "/saved", element: <SavedBuilt /> },
+    { path: "/courses-taken", element: <CoursesTaken /> },
   ]);
 
   return (
