@@ -13,7 +13,7 @@ function App() {
     { path: "/", element: <Home /> },
     { path: "/user", element: <User /> },
     { path: "/saved", element: <SavedBuilt /> },
-    { path: "/coursestaken", element: <CoursesTaken /> },
+    { path: "/courses-taken", element: <CoursesTaken /> },
   ]);
 
   return (
