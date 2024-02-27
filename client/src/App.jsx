@@ -5,7 +5,6 @@ import User from "./pages/User";
 import Navbar from "./components/Navbar";
 import SavedBuilt from "./pages/SavedBuilt";
 import CoursesTaken from "./pages/CoursesTaken";
-import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
       <Toaster position="top-center" />
       <Navbar />
       <MainContainer>{routes}</MainContainer>
-      {/* <Footer /> */}
     </div>
   );
 }

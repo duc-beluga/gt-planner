@@ -15,8 +15,8 @@ import coursesArray from "../data/data.json";
 import "reactflow/dist/style.css";
 import DownloadButton from "./DownloadButton";
 import { useAuth } from "../context/AuthContext";
-import axios from "axios";
 import PlanNamePopUp from "./PlanNamePopUp";
+import axios from "axios";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -29,6 +29,7 @@ export default function PlayGround({
   projectName,
   initialNodes,
   initialEdges,
+  currentPage,
 }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -82,9 +83,22 @@ export default function PlayGround({
     [setEdges]
   );
 
-  const onSave = () => {
-    document.getElementById("plan-name").showModal();
-  };
+  const onSave = useCallback(() => {
+    if (currentPage === "create") {
+      document.getElementById("plan-name").showModal();
+    } else {
+      if (rfInstance) {
+        const flow = rfInstance.toObject();
+        axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/updatePlan`, {
+          email: currentUser.email,
+          newPlan: {
+            name: projectName,
+            content: JSON.stringify(flow),
+          },
+        });
+      }
+    }
+  }, [rfInstance]);
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
