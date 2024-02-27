@@ -56,6 +56,7 @@ const SavedBuilt = () => {
       projectName={planBuildChosen.name}
       initialNodes={planBuildChosen.nodes}
       initialEdges={planBuildChosen.edges}
+      currentPage={"rebuild"}
     />
   );
 };

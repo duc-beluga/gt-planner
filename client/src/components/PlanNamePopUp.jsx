@@ -18,7 +18,7 @@ const PlanNamePopUp = ({ rfInstance, currentUser }) => {
             },
           })
           .then((result) => {
-            toast.success("Added New Plan Sucessful :)");
+            toast.success(result.data.message);
             document.getElementById("plan-name").close();
           })
           .catch((error) => toast.error(error.response.data.message));

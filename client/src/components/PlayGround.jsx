@@ -8,15 +8,19 @@ import ReactFlow, {
   addEdge,
   Panel,
 } from "reactflow";
+import "reactflow/dist/style.css";
+
+import toast from "react-hot-toast";
+import axios from "axios";
 
 import CourseSelectorNode from "../customNodes/CourseSelectorNode";
-import { FlowProvider } from "../context/FlowContext";
 import coursesArray from "../data/data.json";
-import "reactflow/dist/style.css";
-import DownloadButton from "./DownloadButton";
+
+import { FlowProvider } from "../context/FlowContext";
 import { useAuth } from "../context/AuthContext";
+
+import DownloadButton from "./DownloadButton";
 import PlanNamePopUp from "./PlanNamePopUp";
-import axios from "axios";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -86,16 +90,19 @@ export default function PlayGround({
   const onSave = useCallback(() => {
     if (currentPage === "create") {
       document.getElementById("plan-name").showModal();
-    } else {
+    } else if (currentPage === "rebuild") {
       if (rfInstance) {
         const flow = rfInstance.toObject();
-        axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/updatePlan`, {
-          email: currentUser.email,
-          newPlan: {
-            name: projectName,
-            content: JSON.stringify(flow),
-          },
-        });
+        axios
+          .post(`${import.meta.env.VITE_SERVER_URL}/api/user/updatePlan`, {
+            email: currentUser.email,
+            newPlan: {
+              name: projectName,
+              content: JSON.stringify(flow),
+            },
+          })
+          .then((result) => toast.success(result.data.message))
+          .catch((error) => toast.error(error.response.data.message));
       }
     }
   }, [rfInstance]);
