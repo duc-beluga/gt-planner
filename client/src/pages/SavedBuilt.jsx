@@ -37,7 +37,7 @@ const SavedBuilt = () => {
   };
 
   return !planBuildChosen ? (
-    <div className="flex flex-col justify-center items-center h-full text-5xl gap-y-5">
+    <div className="flex flex-col justify-center items-center h-full gap-y-5">
       {loading ? (
         <Spinner />
       ) : savedPlans.length !== 0 ? (
