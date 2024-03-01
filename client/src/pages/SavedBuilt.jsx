@@ -40,32 +40,28 @@ const SavedBuilt = () => {
     <div className="flex flex-col justify-center items-center h-full text-5xl gap-y-5">
       {loading ? (
         <Spinner />
-      ) : (
+      ) : savedPlans.length !== 0 ? (
         <div className="grid grid-cols-3 gap-4">
-          {savedPlans.length !== 0 ? (
-            <>
-              {savedPlans.map((plan) => (
-                <BuiltCard
-                  key={plan.name}
-                  plan={plan}
-                  setPlanBuildChosen={setPlanBuildChosen}
-                  setPlanDeleteChosen={setPlanDeleteChosen}
-                  onDeletePlan={onDeletePlan}
-                />
-              ))}
-              <ConfirmationPopUp
-                planDeleteChosen={planDeleteChosen}
-                onDeletePlan={onDeletePlan}
-              />
-            </>
-          ) : (
-            <div className="stat">
-              <div className="stat-value pl-5">
-                <LampDesk size={84} />
-              </div>
-              <div className="stat-value">n O thing here</div>
-            </div>
-          )}
+          {savedPlans.map((plan) => (
+            <BuiltCard
+              key={plan.name}
+              plan={plan}
+              setPlanBuildChosen={setPlanBuildChosen}
+              setPlanDeleteChosen={setPlanDeleteChosen}
+              onDeletePlan={onDeletePlan}
+            />
+          ))}
+          <ConfirmationPopUp
+            planDeleteChosen={planDeleteChosen}
+            onDeletePlan={onDeletePlan}
+          />
+        </div>
+      ) : (
+        <div>
+          <div className="stat-value pl-7">
+            <LampDesk size={84} />
+          </div>
+          <div className="stat-value">n(O) saved plans</div>
         </div>
       )}
     </div>
