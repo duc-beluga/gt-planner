@@ -3,7 +3,7 @@ import { Wrench } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const PlanNamePopUp = ({ rfInstance, currentUser, onSave, setPlanName }) => {
+const PlanNamePopUp = ({ rfInstance, currentUser, setPlanName }) => {
   const handleFormSubmit = useCallback(
     (event) => {
       event.preventDefault();

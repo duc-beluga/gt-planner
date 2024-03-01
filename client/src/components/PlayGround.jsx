@@ -90,28 +90,23 @@ export default function PlayGround({
     [setEdges]
   );
 
-  const handlePlanSave = () => {
+  const onSave = useCallback(() => {
     if (planName === "") {
       document.getElementById("plan-name").showModal();
     } else {
-      onSave();
-    }
-  };
-
-  const onSave = useCallback(() => {
-    const url = planName === "" ? "addPlan" : "updatePlan";
-    if (rfInstance) {
-      const flow = rfInstance.toObject();
-      axios
-        .post(`${import.meta.env.VITE_SERVER_URL}/api/user/${url}`, {
-          email: currentUser.email,
-          newPlan: {
-            name: planName,
-            content: JSON.stringify(flow),
-          },
-        })
-        .then((result) => toast.success(result.data.message))
-        .catch((error) => toast.error(error.response.data.message));
+      if (rfInstance) {
+        const flow = rfInstance.toObject();
+        axios
+          .post(`${import.meta.env.VITE_SERVER_URL}/api/user/updatePlan`, {
+            email: currentUser.email,
+            newPlan: {
+              name: planName,
+              content: JSON.stringify(flow),
+            },
+          })
+          .then((result) => toast.success(result.data.message))
+          .catch((error) => toast.error(error.response.data.message));
+      }
     }
   }, [rfInstance, planName]);
 
@@ -132,7 +127,7 @@ export default function PlayGround({
           <Background variant="dots" gap={12} size={1} />
           {currentUser && (
             <Panel position="top-right">
-              <button className="btn bg-white z-20" onClick={handlePlanSave}>
+              <button className="btn bg-white z-20" onClick={onSave}>
                 Save
               </button>
             </Panel>
