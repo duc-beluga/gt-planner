@@ -33,7 +33,6 @@ export default function PlayGround({
   projectName,
   initialNodes,
   initialEdges,
-  currentPage,
 }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);

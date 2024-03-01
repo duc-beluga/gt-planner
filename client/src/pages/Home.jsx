@@ -38,12 +38,7 @@ const Home = () => {
       </div>
     </div>
   ) : (
-    <PlayGround
-      projectName={""}
-      initialNodes={[]}
-      initialEdges={[]}
-      currentPage={"create"}
-    />
+    <PlayGround projectName={""} initialNodes={[]} initialEdges={[]} />
   );
 };
 
