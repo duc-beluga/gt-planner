@@ -20,7 +20,6 @@ function App() {
       <Toaster position="top-center" />
       <Navbar />
       <MainContainer>{routes}</MainContainer>
-      {/* <Footer /> */}
     </div>
   );
 }

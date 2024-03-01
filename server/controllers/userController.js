@@ -30,10 +30,12 @@ const addPlanToUser = async (req, res) => {
     return res.status(404).json({ message: "User not found" });
   }
 
-  const planExists = user.savedPlans.some(plan => plan.name === newPlan.name);
+  const planExists = user.savedPlans.some((plan) => plan.name === newPlan.name);
 
   if (planExists) {
-    return res.status(409).json({ message: "Plan with the same name already exists" });
+    return res
+      .status(409)
+      .json({ message: "Plan with the same name already exists" });
   }
 
   const updatedUser = await User.findOneAndUpdate(
@@ -42,7 +44,40 @@ const addPlanToUser = async (req, res) => {
     { new: true }
   );
 
-  res.status(201).json({ message: "Plan added to saved plans", user: updatedUser });
+  res
+    .status(201)
+    .json({ message: "Plan added to saved plans", user: updatedUser });
+};
+
+const updatePlanUser = async (req, res) => {
+  const { email, newPlan } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  console.log(email);
+  const planIndex = user.savedPlans.findIndex(
+    (plan) => plan.name === newPlan.name
+  );
+
+  if (planIndex === -1) {
+    return res.status(404).json({ message: "Plan not found" });
+  }
+
+  user.savedPlans[planIndex] = newPlan;
+
+  const updatedUser = await User.findOneAndUpdate(
+    { email },
+    { savedPlans: user.savedPlans },
+    { new: true }
+  );
+
+  res
+    .status(200)
+    .json({ message: "Plan updated in saved plans", user: updatedUser });
 };
 
 const getUserPlans = async (req, res) => {
@@ -79,4 +114,5 @@ export default {
   addPlanToUser,
   getUserPlans,
   deleteUserPlan,
+  updatePlanUser,
 };

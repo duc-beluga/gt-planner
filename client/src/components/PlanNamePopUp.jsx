@@ -3,7 +3,7 @@ import { Wrench } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const PlanNamePopUp = ({ rfInstance, currentUser }) => {
+const PlanNamePopUp = ({ rfInstance, currentUser, setPlanName }) => {
   const handleFormSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -18,7 +18,8 @@ const PlanNamePopUp = ({ rfInstance, currentUser }) => {
             },
           })
           .then((result) => {
-            toast.success("Added New Plan Sucessful :)");
+            toast.success(result.data.message);
+            setPlanName(event.target[0].value);
             document.getElementById("plan-name").close();
           })
           .catch((error) => toast.error(error.response.data.message));
