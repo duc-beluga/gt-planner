@@ -60,10 +60,10 @@ const SavedBuilt = () => {
             </>
           ) : (
             <div className="stat">
-              <div class="stat-value">
-                <LampDesk size={64} />
+              <div className="stat-value pl-5">
+                <LampDesk size={84} />
               </div>
-              <div class="stat-value">Nothing here</div>
+              <div className="stat-value">n O thing here</div>
             </div>
           )}
         </div>
