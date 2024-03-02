@@ -11,7 +11,7 @@ import Chat from "./pages/Chat";
 
 function App() {
   let routes = useRoutes([
-    { path: "/", element: <Selection /> },
+    { path: "/", element: <Home /> },
     { path: "/user", element: <User /> },
     { path: "/saved", element: <SavedBuilt /> },
     { path: "/courses-taken", element: <CoursesTaken /> },
