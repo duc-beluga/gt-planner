@@ -1,8 +1,8 @@
-import React from "react";
-import BuiltCard from "./BuiltCard";
-import { PlusCircle } from "lucide-react";
+import React, { useState } from "react";
 
 const SavedBuilt = () => {
+  // Move to parent.
+  const [userOption, setUserOption] = useState("")
   return (
     <main className="h-screen flex justify-center flex-col items-center">
       <div>
@@ -13,7 +13,7 @@ const SavedBuilt = () => {
         <div className="carousel-item">
           <button className="btn h-max btn-outline m-5 rounded-none p-0"
             onClick={() => {
-              console.log("Blue Pressed");
+              setUserOption("blue")
             }}
           >
             <img src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" alt="Class graph" />
@@ -22,7 +22,7 @@ const SavedBuilt = () => {
         <div className="carousel-item">
           <button className="btn h-max btn-outline m-5 rounded-none p-0"
             onClick={() => {
-              console.log("Pink Pressed");
+              setUserOption("pink")
             }}
           >
             <img src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" alt="Class graph" />
@@ -32,9 +32,9 @@ const SavedBuilt = () => {
 
       <div className="flex justify-end w-full">
         <button
-          className="btn btn-neutral w-2/12 mr-96"
+          className="btn btn-neutral w-2/12 mr-36 mt-28"
           onClick={() => {
-            console.log("save pressed")
+            console.log(userOption)
           }}
         >
           Save
