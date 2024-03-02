@@ -7,7 +7,7 @@ import SavedBuilt from "./pages/SavedBuilt";
 import CoursesTaken from "./pages/CoursesTaken";
 import { Toaster } from "react-hot-toast";
 import Selection from "./components/Selection"
-//import Chat from "./pages/Chat";
+import Chat from "./pages/Chat";
 
 function App() {
   let routes = useRoutes([
