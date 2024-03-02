@@ -6,11 +6,15 @@ const BuiltCard = ({ plan, setPlanBuildChosen, setPlanDeleteChosen }) => {
         <div className="stats shadow m-3">
           <div className="stat place-items-center">
             <div className="stat-title">Taken</div>
-            <div className="stat-value text-primary">21</div>
+            <div className="stat-value text-primary">
+              {Math.floor(Math.random() * 70)}
+            </div>
           </div>
           <div className="stat place-items-center">
             <div className="stat-title">Rem</div>
-            <div className="stat-value text-secondary">30</div>
+            <div className="stat-value text-secondary">
+              {Math.floor(Math.random() * 70)}
+            </div>
           </div>
         </div>
         <div className="card-actions justify-between">
