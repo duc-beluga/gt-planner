@@ -1,10 +1,9 @@
 import React from "react";
-import { Truck } from "lucide-react";
 
 const Chat = () => {
   return (
-    <div>
-      Coming soon.. <Truck />
+    <div className="flex justify-center items-center">
+      <img src="./public/bgImage2.png" className="rounded-lg m-4"></img>
     </div>
   );
 };

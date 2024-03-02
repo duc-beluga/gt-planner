@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, Github, Home, Save, User } from "lucide-react";
+import { Mail, Github, Home, Save, User, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,18 +16,23 @@ const Navbar = () => {
             </Link>
           </li>
           {currentUser && (
-            <li>
-              <Link to="/user">
-                <User />
-              </Link>
-            </li>
-          )}
-          {currentUser && (
-            <li>
-              <Link to="/saved">
-                <Save />
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link to="/user">
+                  <User />
+                </Link>
+              </li>
+              <li>
+                <Link to="/saved">
+                  <Save />
+                </Link>
+              </li>
+              <li>
+                <Link to="/chat">
+                  <MessageCircle />
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
