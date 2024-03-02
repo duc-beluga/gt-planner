@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import SavedBuilt from "./pages/SavedBuilt";
 import CoursesTaken from "./pages/CoursesTaken";
 import { Toaster } from "react-hot-toast";
+import Chat from "./pages/Chat";
 
 function App() {
   let routes = useRoutes([
@@ -13,6 +14,7 @@ function App() {
     { path: "/user", element: <User /> },
     { path: "/saved", element: <SavedBuilt /> },
     { path: "/courses-taken", element: <CoursesTaken /> },
+    { path: "/chat", element: <Chat /> },
   ]);
 
   return (
