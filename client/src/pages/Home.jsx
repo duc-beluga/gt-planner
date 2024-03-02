@@ -28,7 +28,7 @@ const Home = () => {
       </div>
       <div>
         <button
-          className="btn"
+          className="btn btn-primary"
           onClick={() => {
             setMajorSelected(true);
           }}
