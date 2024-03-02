@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
 const AuthContext = createContext();
 
@@ -31,18 +32,12 @@ export const AuthProvider = ({ children }) => {
         });
       }
       setLoading(false);
-      console.log("User", user);
     });
     return unsubscribe;
   }, []);
 
-  //TODO: Add a spinner
   if (loading) {
-    return (
-      <div className="h-screen flex justify-center items-center">
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
+    return <Spinner />;
   }
   return (
     <AuthContext.Provider value={{ logInWithGoogle, logOut, currentUser }}>
