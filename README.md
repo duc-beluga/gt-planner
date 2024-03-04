@@ -85,6 +85,10 @@ The website is a fun, interactive space to plan your semesters. Design your acad
 
 ## Wireframes
 
-- [HomePage] - _Link to HomePage wireframe_
-- [NotFoundPage] - _Link to NotFoundPage wireframe_
+### Home
+![image](https://github.com/duc-beluga/gt-planner/assets/98554622/f1e802c8-d04b-4b51-93a0-31d65f7c7b03)
+
+### Saved Plans
+![SavedPlansPage](https://github.com/duc-beluga/gt-planner/assets/98554622/8ab165c6-d2d1-4843-b037-339000b403af)
+
 

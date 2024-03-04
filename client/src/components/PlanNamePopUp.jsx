@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Wrench } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const PlanNamePopUp = ({ setProjectName }) => {
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    setProjectName(event.target[0].value);
-  };
+const PlanNamePopUp = ({ rfInstance, currentUser, setPlanName }) => {
+  const handleFormSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (rfInstance) {
+        const flow = rfInstance.toObject();
+        axios
+          .post(`${import.meta.env.VITE_SERVER_URL}/api/user/addPlan`, {
+            email: currentUser.email,
+            newPlan: {
+              name: event.target[0].value,
+              content: JSON.stringify(flow),
+            },
+          })
+          .then((result) => {
+            toast.success(result.data.message);
+            setPlanName(event.target[0].value);
+            document.getElementById("plan-name").close();
+          })
+          .catch((error) => toast.error(error.response.data.message));
+      }
+    },
+    [rfInstance]
+  );
 
   return (
     <dialog id="plan-name" className="modal">

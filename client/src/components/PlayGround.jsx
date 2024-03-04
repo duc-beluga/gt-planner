@@ -8,15 +8,19 @@ import ReactFlow, {
   addEdge,
   Panel,
 } from "reactflow";
+import "reactflow/dist/style.css";
+
+import toast from "react-hot-toast";
+import axios from "axios";
 
 import CourseSelectorNode from "../customNodes/CourseSelectorNode";
-import { FlowProvider } from "../context/FlowContext";
 import coursesArray from "../data/data.json";
-import "reactflow/dist/style.css";
-import DownloadButton from "./DownloadButton";
+
+import { FlowProvider } from "../context/FlowContext";
 import { useAuth } from "../context/AuthContext";
-import axios from "axios";
-import toast from "react-hot-toast";
+
+import DownloadButton from "./DownloadButton";
+import PlanNamePopUp from "./PlanNamePopUp";
 
 const postCourseDict = coursesArray.reduce((acc, course) => {
   acc[course.name] = course.postCoursesList;
@@ -33,7 +37,10 @@ export default function PlayGround({
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [rfInstance, setRfInstance] = useState(null);
+  const [planName, setPlanName] = useState(projectName);
+
   const { currentUser } = useAuth();
+
   useEffect(() => {
     if (initialNodes.length === 0) {
       createPostCourse(null, "Media & Intelligence");
@@ -83,19 +90,24 @@ export default function PlayGround({
   );
 
   const onSave = useCallback(() => {
-    if (rfInstance) {
-      const flow = rfInstance.toObject();
-      localStorage.setItem(projectName, JSON.stringify(flow));
-      axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user/addPlan`, {
-        email: currentUser.email,
-        newPlan: {
-          name: projectName,
-          content: JSON.stringify(flow),
-        },
-      });
-      toast.success("Added New Plan Sucessful");
+    if (planName === "") {
+      document.getElementById("plan-name").showModal();
+    } else {
+      if (rfInstance) {
+        const flow = rfInstance.toObject();
+        axios
+          .post(`${import.meta.env.VITE_SERVER_URL}/api/user/updatePlan`, {
+            email: currentUser.email,
+            newPlan: {
+              name: planName,
+              content: JSON.stringify(flow),
+            },
+          })
+          .then((result) => toast.success(result.data.message))
+          .catch((error) => toast.error(error.response.data.message));
+      }
     }
-  }, [rfInstance]);
+  }, [rfInstance, planName]);
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
@@ -120,10 +132,16 @@ export default function PlayGround({
             </Panel>
           )}
           <Panel position="top-center">
-            <h2 className="btn bg-white">{projectName}</h2>
+            <h2 className="btn bg-white">{planName}</h2>
           </Panel>
           <DownloadButton />
         </ReactFlow>
+        <PlanNamePopUp
+          rfInstance={rfInstance}
+          currentUser={currentUser}
+          onSave={onSave}
+          setPlanName={setPlanName}
+        />
       </div>
     </FlowProvider>
   );
