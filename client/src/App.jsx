@@ -5,6 +5,7 @@ import User from "./pages/User";
 import Navbar from "./components/Navbar";
 import SavedBuilt from "./pages/SavedBuilt";
 import Footer from "./components/Footer";
+import ErrorPage from "./pages/utils/ErrorPage";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     { path: "/", element: <Home /> },
     { path: "/user", element: <User /> },
     { path: "/saved", element: <SavedBuilt /> },
+    { path: "*", element: <ErrorPage /> },
   ]);
 
   return (
