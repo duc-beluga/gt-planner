@@ -4,13 +4,10 @@ import Home from "./pages/Home";
 import User from "./pages/User";
 import Navbar from "./components/Navbar";
 import SavedBuilt from "./pages/SavedBuilt";
-import ErrorPage from "./pages/utils/ErrorPage";
+import PageNotFound from "./pages/PageNotFound";
 import CoursesTaken from "./pages/CoursesTaken";
 import { Toaster } from "react-hot-toast";
 import Chat from "./pages/Chat";
-
-
-
 
 function App() {
   let routes = useRoutes([
@@ -19,7 +16,7 @@ function App() {
     { path: "/saved", element: <SavedBuilt /> },
     { path: "/courses-taken", element: <CoursesTaken /> },
     { path: "/chat", element: <Chat /> },
-    { path: "*", element: <ErrorPage /> },
+    { path: "*", element: <PageNotFound /> },
   ]);
 
   return (
