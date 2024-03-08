@@ -8,6 +8,7 @@ import PageNotFound from "./pages/PageNotFound";
 import CoursesTaken from "./pages/CoursesTaken";
 import { Toaster } from "react-hot-toast";
 import Chat from "./pages/Chat";
+import { Suspense } from "react";
 
 function App() {
   let routes = useRoutes([
@@ -23,7 +24,13 @@ function App() {
     <div className="flex flex-col h-screen">
       <Toaster position="top-center" />
       <Navbar />
-      <MainContainer>{routes}</MainContainer>
+      <MainContainer>
+        <Suspense
+          fallback={<div className="text-5xl font-bold">Loading...</div>}
+        >
+          {routes}
+        </Suspense>
+      </MainContainer>
     </div>
   );
 }
