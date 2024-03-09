@@ -29,19 +29,6 @@ const SavedBuilt = () => {
           </button>
         </div>
       </div>
-
-      <div className="flex justify-end w-full">
-        <button
-          className="btn btn-neutral w-2/12 mr-36 mt-28"
-          onClick={() => {
-            console.log(userOption)
-          }}
-        >
-          Save
-        </button>
-      </div>
-
-
     </main>
   );
 };
