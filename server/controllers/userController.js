@@ -46,9 +46,9 @@ const addPlanToUser = async (req, res) => {
     );
 
     if (planExists) {
-      return res
-        .status(409)
-        .json({ message: "Plan with the same name already exists" });
+      return res.status(409).json({
+        message: "Please choose a unique plan name",
+      });
     }
 
     const updatedUser = await User.findOneAndUpdate(
@@ -66,9 +66,9 @@ const addPlanToUser = async (req, res) => {
   }
 };
 
-const updatePlanUser = async (req, res) => {
+const updateUserPlan = async (req, res) => {
   try {
-    const { email } = req.params;
+    const { email, planName } = req.params;
     const { newPlan } = req.body;
 
     const user = await User.findOne({ email });
@@ -80,7 +80,7 @@ const updatePlanUser = async (req, res) => {
     console.log(email);
 
     const planIndex = user.savedPlans.findIndex(
-      (plan) => plan.name === newPlan.name,
+      (plan) => plan.name === planName,
     );
 
     if (planIndex === -1) {
@@ -127,8 +127,7 @@ const getUserPlans = async (req, res) => {
 
 const deleteUserPlan = async (req, res) => {
   try {
-    const { email } = req.params;
-    const { planName } = req.body;
+    const { email, planName } = req.params;
 
     if (!email || !planName) {
       return res
@@ -159,5 +158,5 @@ export default {
   addPlanToUser,
   getUserPlans,
   deleteUserPlan,
-  updatePlanUser,
+  updateUserPlan,
 };

@@ -17,7 +17,7 @@ router
 // DELETE /users/:email/plans/:planName: Delete plan for user
 router
   .route("/:email/plans/:planName")
-  .put(userController.updatePlanUser)
+  .put(userController.updateUserPlan)
   .delete(userController.deleteUserPlan);
 
 export default router;
