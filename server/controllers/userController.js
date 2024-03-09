@@ -28,7 +28,8 @@ const createUser = async (req, res) => {
 
 const addPlanToUser = async (req, res) => {
   try {
-    const { email, newPlan } = req.body;
+    const { email } = req.params;
+    const { newPlan } = req.body;
 
     if (!email || !newPlan) {
       return res.status(400).json({ message: "Email and plan are required" });
@@ -67,7 +68,8 @@ const addPlanToUser = async (req, res) => {
 
 const updatePlanUser = async (req, res) => {
   try {
-    const { email, newPlan } = req.body;
+    const { email } = req.params;
+    const { newPlan } = req.body;
 
     const user = await User.findOne({ email });
 

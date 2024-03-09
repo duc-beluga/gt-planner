@@ -9,7 +9,7 @@ router.route("/").post(userController.createUser);
 // GET /users/:email/plans: Get user plans
 // POST /users/:email/plans: Add plan to user
 router
-  .route("/:email/plans/")
+  .route("/:email/plans")
   .get(userController.getUserPlans)
   .post(userController.updatePlanUser);
 

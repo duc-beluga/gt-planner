@@ -16,8 +16,8 @@ const SavedBuilt = () => {
 
   useEffect(() => {
     axios
-      .post(
-        `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.email}/plan`,
+      .get(
+        `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.email}/plans`,
       )
       .then((res) => setSavedPlans(res.data))
       .catch((err) => console.log(err))
@@ -28,7 +28,7 @@ const SavedBuilt = () => {
     setSavedPlans(savedPlans.filter((plan) => plan.name != planName));
     axios
       .delete(
-        `${import.meta.env.VITE_SERVER_URL} / api / user / ${currentUser.email} / plans / ${planName}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.email}/plans/${planName}`,
       )
       .catch((err) => console.log(err));
   };
