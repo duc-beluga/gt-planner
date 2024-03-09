@@ -78,6 +78,7 @@ const updatePlanUser = async (req, res) => {
     }
 
     console.log(email);
+
     const planIndex = user.savedPlans.findIndex(
       (plan) => plan.name === newPlan.name,
     );

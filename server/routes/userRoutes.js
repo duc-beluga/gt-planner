@@ -11,7 +11,7 @@ router.route("/").post(userController.createUser);
 router
   .route("/:email/plans")
   .get(userController.getUserPlans)
-  .post(userController.updatePlanUser);
+  .post(userController.addPlanToUser);
 
 // PUT /users/:email/plans/:planName: Update plan for user
 // DELETE /users/:email/plans/:planName: Delete plan for user
