@@ -86,7 +86,7 @@ export default function PlayGround({
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
+    [setEdges],
   );
 
   const onSave = useCallback(() => {
@@ -96,22 +96,24 @@ export default function PlayGround({
       if (rfInstance) {
         const flow = rfInstance.toObject();
         axios
-          .post(`${import.meta.env.VITE_SERVER_URL}/api/user/updatePlan`, {
-            email: currentUser.email,
-            newPlan: {
-              name: planName,
-              content: JSON.stringify(flow),
+          .put(
+            `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.email}/plans/${planName}`,
+            {
+              newPlan: {
+                name: planName,
+                content: JSON.stringify(flow),
+              },
             },
-          })
+          )
           .then((result) => toast.success(result.data.message))
           .catch((error) => toast.error(error.response.data.message));
       }
     }
-  }, [rfInstance, planName]);
+  }, [rfInstance, planName, currentUser.email]);
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
-      <div className="w-full h-[calc(100vh-4rem)]">
+      <div className="h-[calc(100vh-4rem)] w-full">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -126,7 +128,7 @@ export default function PlayGround({
           <Background variant="dots" gap={12} size={1} />
           {currentUser && (
             <Panel position="top-right">
-              <button className="btn bg-white z-20" onClick={onSave}>
+              <button className="btn z-20 bg-white" onClick={onSave}>
                 Save
               </button>
             </Panel>
