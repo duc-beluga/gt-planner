@@ -2,7 +2,7 @@ name: Automated API tests using Postman CLI
 
 on:
   workflow_dispatch:
-  pull_request:
+  # pull_request: disabled until env vars are available
 
 jobs:
   automated-api-tests:
