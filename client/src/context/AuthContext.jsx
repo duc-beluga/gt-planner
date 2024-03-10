@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(user);
       if (user !== null) {
         axios.post(`${import.meta.env.VITE_SERVER_URL}/api/user`, {
+          uid: user.uid,
           email: user.email,
         });
       }

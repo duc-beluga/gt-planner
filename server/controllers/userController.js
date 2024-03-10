@@ -2,21 +2,28 @@ import User from "../models/User.js";
 
 const createUser = async (req, res) => {
   try {
-    const { email, savedPlans } = req.body;
-    if (!email) {
-      return res.status(400).json({ message: "Email is required" });
+    const { uid, email, savedPlans } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    // BANDAID TO UPDATE EXISTING DB ENTRIES SINCE EMAIL IS UNIQUE KEY
+
+    if (existingUser) {
+      // Update the existing user's uid
+      existingUser.uid = uid;
+      await existingUser.save();
+      return res.status(200).json({ message: "User updated" });
     }
 
-    const duplicate = await User.findOne({ email });
+    const duplicate = await User.findOne({ uid });
 
     if (duplicate) {
-      return res.status(201).json({ message: "Email already existed" });
+      return res.status(409).json({ message: "User already exists" });
     }
 
-    const user = await User.create({ email, savedPlans });
+    const user = await User.create({ uid, email, savedPlans });
 
     if (user) {
-      return res.status(201).json({ message: `User ${email} created` });
+      return res.status(201).json({ message: `User ${uid} created` });
     } else {
       return res.status(400).json({ message: "Invalid user data received" });
     }
@@ -28,14 +35,14 @@ const createUser = async (req, res) => {
 
 const addPlanToUser = async (req, res) => {
   try {
-    const { email } = req.params;
+    const { uid } = req.params;
     const { newPlan } = req.body;
 
-    if (!email || !newPlan) {
-      return res.status(400).json({ message: "Email and plan are required" });
+    if (!uid || !newPlan) {
+      return res.status(400).json({ message: "Uid and plan are required" });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ uid });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -52,7 +59,7 @@ const addPlanToUser = async (req, res) => {
     }
 
     const updatedUser = await User.findOneAndUpdate(
-      { email },
+      { uid },
       { $push: { savedPlans: newPlan } },
       { new: true },
     );
@@ -68,10 +75,10 @@ const addPlanToUser = async (req, res) => {
 
 const updateUserPlan = async (req, res) => {
   try {
-    const { email, planName } = req.params;
+    const { uid, planName } = req.params;
     const { newPlan } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ uid });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -90,7 +97,7 @@ const updateUserPlan = async (req, res) => {
     user.savedPlans[planIndex] = newPlan;
 
     const updatedUser = await User.findOneAndUpdate(
-      { email },
+      { uid },
       { savedPlans: user.savedPlans },
       { new: true },
     );
@@ -106,13 +113,13 @@ const updateUserPlan = async (req, res) => {
 
 const getUserPlans = async (req, res) => {
   try {
-    const { email } = req.params;
+    const { uid } = req.params;
 
-    if (!email) {
-      return res.status(400).json({ message: "Email is required " });
+    if (!uid) {
+      return res.status(400).json({ message: "Uid is required " });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ uid });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -127,16 +134,10 @@ const getUserPlans = async (req, res) => {
 
 const deleteUserPlan = async (req, res) => {
   try {
-    const { email, planName } = req.params;
-
-    if (!email || !planName) {
-      return res
-        .status(400)
-        .json({ message: "Email and plan name are required" });
-    }
+    const { uid, planName } = req.params;
 
     const user = await User.findOneAndUpdate(
-      { email },
+      { uid },
       { $pull: { savedPlans: { name: planName } } },
       { new: true },
     );

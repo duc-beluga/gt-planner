@@ -97,7 +97,7 @@ export default function PlayGround({
         const flow = rfInstance.toObject();
         axios
           .put(
-            `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.email}/plans/${planName}`,
+            `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.uid}/plans/${planName}`,
             {
               newPlan: {
                 name: planName,
@@ -109,7 +109,7 @@ export default function PlayGround({
           .catch((error) => toast.error(error.response.data.message));
       }
     }
-  }, [rfInstance, planName, currentUser.email]);
+  }, [rfInstance, planName, currentUser.uid]);
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>
