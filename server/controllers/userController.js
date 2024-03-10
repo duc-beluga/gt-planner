@@ -14,10 +14,11 @@ const createUser = async (req, res) => {
 
     if (user) {
       return res.status(201).json({ message: `User ${uid} created` });
-    } else {
-      return res.status(400).json({ message: "Invalid user data received" });
     }
   } catch (error) {
+    if (error.name === "ValidationError") {
+      return res.status(400).json({ message: "Invalid user data received" });
+    }
     console.error(error);
     res.status(500).json({ message: "Server error" });
   }
