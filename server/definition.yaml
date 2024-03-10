@@ -1,0 +1,225 @@
+openapi: 3.0.0
+info:
+  title: User Plans API
+  version: 1.0.0
+  description: API for managing user plans
+
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+  /user:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateUserResponse"
+        "400":
+          description: Invalid user data received
+        "500":
+          description: Server error
+
+  /user/{email}/plans:
+    get:
+      summary: Get user plans
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Plan"
+        "404":
+          description: User not found
+        "500":
+          description: Server error
+
+    post:
+      summary: Add a plan to user
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddPlanRequest"
+      responses:
+        "201":
+          description: Plan added to user successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddPlanResponse"
+        "400":
+          description: Email and plan are required
+        "404":
+          description: User not found
+        "409":
+          description: Plan with the same name already exists
+        "500":
+          description: Server error
+
+  /user/{email}/plans/{planName}:
+    put:
+      summary: Update a plan for user
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: planName
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePlanRequest"
+      responses:
+        "200":
+          description: Plan updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdatePlanResponse"
+        "404":
+          description: User or plan not found
+        "500":
+          description: Server error
+
+    delete:
+      summary: Delete a plan for user
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: planName
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Plan deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeletePlanResponse"
+        "400":
+          description: Email and plan name are required
+        "404":
+          description: User not found
+        "500":
+          description: Server error
+
+components:
+  schemas:
+    CreateUserRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+        savedPlans:
+          type: array
+          items:
+            $ref: "#/components/schemas/Plan"
+
+    CreateUserResponse:
+      type: object
+      properties:
+        message:
+          type: string
+
+    Plan:
+      type: object
+      required:
+        - name
+        - content
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+
+    AddPlanRequest:
+      type: object
+      required:
+        - newPlan
+      properties:
+        newPlan:
+          $ref: "#/components/schemas/Plan"
+
+    AddPlanResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"
+
+    UpdatePlanRequest:
+      type: object
+      required:
+        - newPlan
+      properties:
+        newPlan:
+          $ref: "#/components/schemas/Plan"
+
+    UpdatePlanResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"
+
+    DeletePlanResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"
+
+    User:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+        savedPlans:
+          type: array
+          items:
+            $ref: "#/components/schemas/Plan"
