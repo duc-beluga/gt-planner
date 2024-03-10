@@ -4,16 +4,6 @@ const createUser = async (req, res) => {
   try {
     const { uid, email, savedPlans } = req.body;
 
-    // const existingUser = await User.findOne({ email });
-    // // BANDAID TO UPDATE EXISTING DB ENTRIES SINCE EMAIL IS UNIQUE KEY
-
-    // if (existingUser) {
-    //   // Update the existing user's uid
-    //   existingUser.uid = uid;
-    //   await existingUser.save();
-    //   return res.status(200).json({ message: "User updated" });
-    // }
-
     const duplicate = await User.findOne({ uid });
 
     if (duplicate) {
