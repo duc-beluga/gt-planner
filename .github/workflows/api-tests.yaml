@@ -2,6 +2,9 @@ name: Automated API tests using Postman CLI
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - Server-Refactor
   # pull_request: disabled until env vars are available
 
 jobs:
