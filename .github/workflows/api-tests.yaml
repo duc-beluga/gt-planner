@@ -1,6 +1,8 @@
 name: Automated API tests using Postman CLI
 
-on: push
+on:
+  workflow_dispatch:
+  pull_request:
 
 jobs:
   automated-api-tests:
@@ -23,13 +25,7 @@ jobs:
 
       - name: Start the server
         run: |
-          npm start & npx wait-on http://localhost:3000 &
-          sleep 5
-          if grep -q "MongooseError: The \`uri\` parameter to \`openUri()\` must be a string, got \"undefined\"" server.log; then
-            echo "MongoDB connection failed. Stopping the workflow."
-            exit 1
-          fi
-
+          npm start & npx wait-on http://localhost:3000
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
