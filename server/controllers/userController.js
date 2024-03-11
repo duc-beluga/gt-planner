@@ -67,7 +67,7 @@ const addPlanToUser = async (req, res) => {
 const updateUserPlan = async (req, res) => {
   try {
     const { uid, planName } = req.params;
-    const { email, newPlan } = req.body;
+    const { newPlan } = req.body;
 
     const user = await User.findOne({ uid });
 
