@@ -23,9 +23,9 @@ app.use("/api/user", userRouter);
 
 // app.use(express.static(path.join(__dirname, "dist")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "dist", "index.html"));
-// });
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
 
 const PORT = process.env.PORT || 3000;
 
