@@ -7,7 +7,7 @@ const createUser = async (req, res) => {
     const duplicate = await User.findOne({ uid });
 
     if (duplicate) {
-      return res.status(409).json({ message: "User already exists" });
+      return res.status(201).json({ message: "User already exists" });
     }
 
     const user = await User.create({ uid, email, savedPlans });
@@ -40,7 +40,7 @@ const addPlanToUser = async (req, res) => {
     }
 
     const planExists = user.savedPlans.some(
-      (plan) => plan.name === newPlan.name,
+      (plan) => plan.name === newPlan.name
     );
 
     if (planExists) {
@@ -52,7 +52,7 @@ const addPlanToUser = async (req, res) => {
     const updatedUser = await User.findOneAndUpdate(
       { uid },
       { $push: { savedPlans: newPlan } },
-      { new: true },
+      { new: true }
     );
 
     res
@@ -78,7 +78,7 @@ const updateUserPlan = async (req, res) => {
     console.log(email);
 
     const planIndex = user.savedPlans.findIndex(
-      (plan) => plan.name === planName,
+      (plan) => plan.name === planName
     );
 
     if (planIndex === -1) {
@@ -90,7 +90,7 @@ const updateUserPlan = async (req, res) => {
     const updatedUser = await User.findOneAndUpdate(
       { uid },
       { savedPlans: user.savedPlans },
-      { new: true },
+      { new: true }
     );
 
     res
@@ -130,7 +130,7 @@ const deleteUserPlan = async (req, res) => {
     const user = await User.findOneAndUpdate(
       { uid },
       { $pull: { savedPlans: { name: planName } } },
-      { new: true },
+      { new: true }
     );
 
     if (!user) {
