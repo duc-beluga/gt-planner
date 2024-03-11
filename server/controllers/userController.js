@@ -75,8 +75,6 @@ const updateUserPlan = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    console.log(email);
-
     const planIndex = user.savedPlans.findIndex(
       (plan) => plan.name === planName
     );
