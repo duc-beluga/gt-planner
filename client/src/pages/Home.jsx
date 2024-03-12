@@ -4,7 +4,6 @@ import { PlusCircle } from "lucide-react";
 
 const Home = () => {
   const [majorSelected, setMajorSelected] = useState(false);
-
   return !majorSelected ? (
     <div className="flex gap-4 flex-col justify-center items-center h-full text-5xl">
       <div className="my-10 font-bold">

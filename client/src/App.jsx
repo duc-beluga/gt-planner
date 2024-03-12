@@ -7,6 +7,7 @@ import SavedBuilt from "./pages/SavedBuilt";
 import PageNotFound from "./pages/PageNotFound";
 import CoursesTaken from "./pages/CoursesTaken";
 import { Toaster } from "react-hot-toast";
+import Selection from "./components/Selection"
 import Chat from "./pages/Chat";
 import { Suspense } from "react";
 
