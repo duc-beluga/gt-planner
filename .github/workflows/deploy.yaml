@@ -28,3 +28,4 @@ jobs:
         with:
           branch: gh-pages
           folder: client/dist
+          token: ${{ secrets.GH_TOKEN }}
