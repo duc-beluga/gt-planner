@@ -26,7 +26,7 @@ function App() {
       <Navbar />
       <MainContainer>
         <Suspense
-          fallback={<div className="text-5xl font-bold">Loading....</div>}
+          fallback={<div className="text-5xl font-bold">Loading...</div>}
         >
           {routes}
         </Suspense>
