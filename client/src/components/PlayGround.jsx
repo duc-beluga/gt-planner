@@ -86,30 +86,32 @@ export default function PlayGround({
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges],
+    [setEdges]
   );
 
   const onSave = useCallback(() => {
     if (planName === "") {
       document.getElementById("plan-name").showModal();
     } else {
-      if (rfInstance) {
+      if (rfInstance && currentUser) {
         const flow = rfInstance.toObject();
         axios
           .put(
-            `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.uid}/plans/${planName}`,
+            `${import.meta.env.VITE_SERVER_URL}/api/user/${
+              currentUser.uid
+            }/plans/${planName}`,
             {
               newPlan: {
                 name: planName,
                 content: JSON.stringify(flow),
               },
-            },
+            }
           )
           .then((result) => toast.success(result.data.message))
           .catch((error) => toast.error(error.response.data.message));
       }
     }
-  }, [rfInstance, planName, currentUser.uid]);
+  }, [rfInstance, planName]);
 
   return (
     <FlowProvider createPostCourse={createPostCourse}>

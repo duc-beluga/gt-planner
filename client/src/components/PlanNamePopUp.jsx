@@ -11,13 +11,15 @@ const PlanNamePopUp = ({ rfInstance, currentUser, setPlanName }) => {
         const flow = rfInstance.toObject();
         axios
           .post(
-            `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.uid}/plans`,
+            `${import.meta.env.VITE_SERVER_URL}/api/user/${
+              currentUser.uid
+            }/plans`,
             {
               newPlan: {
                 name: event.target[0].value,
                 content: JSON.stringify(flow),
               },
-            },
+            }
           )
           .then((result) => {
             toast.success(result.data.message);
@@ -27,7 +29,7 @@ const PlanNamePopUp = ({ rfInstance, currentUser, setPlanName }) => {
           .catch((error) => toast.error(error.response.data.message));
       }
     },
-    [rfInstance, currentUser.uid],
+    [rfInstance]
   );
 
   return (
