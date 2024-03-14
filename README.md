@@ -89,6 +89,11 @@ The website is a fun, interactive space to plan your semesters. Design your acad
 ![image](https://github.com/duc-beluga/gt-planner/assets/98554622/f1e802c8-d04b-4b51-93a0-31d65f7c7b03)
 
 ### Saved Plans
+
+### High Level
 ![SavedPlansPage](https://github.com/duc-beluga/gt-planner/assets/98554622/8ab165c6-d2d1-4843-b037-339000b403af)
 
+## System Design
+
+![Blank board (1)](https://github.com/duc-beluga/gt-planner/assets/98554622/0270d3dc-8bbf-4c08-a514-9dac7389ae86)
 
