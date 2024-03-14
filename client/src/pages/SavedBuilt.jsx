@@ -17,7 +17,7 @@ const SavedBuilt = () => {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.uid}/plans`,
+        `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.uid}/plans`
       )
       .then((res) => setSavedPlans(res.data))
       .catch((err) => console.log(err))
@@ -28,13 +28,15 @@ const SavedBuilt = () => {
     setSavedPlans(savedPlans.filter((plan) => plan.name != planName));
     axios
       .delete(
-        `${import.meta.env.VITE_SERVER_URL}/api/user/${currentUser.uid}/plans/${planName}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/user/${
+          currentUser.uid
+        }/plans/${planName}`
       )
       .catch((err) => console.log(err));
   };
 
   return !planBuildChosen ? (
-    <div className="flex h-full flex-col items-center justify-center gap-y-5">
+    <div className="flex h-[calc(100%-6rem)] flex-col items-center justify-start gap-y-5 mt-24">
       {loading ? (
         <Spinner />
       ) : savedPlans.length !== 0 ? (
