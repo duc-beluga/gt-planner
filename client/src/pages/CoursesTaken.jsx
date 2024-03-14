@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DropDown from "../components/DropDown";
 
 const CoursesTaken = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,7 +45,7 @@ const CoursesTaken = () => {
   };
 
   return (
-    <div className="flex mt-14 font-inter">
+    <div className="flex mt-14">
       {" "}
       <div className="w-1/2 ml-36">
         <h2 className="text-2xl font-medium my-5 ml-3">Courses Taken</h2>{" "}
@@ -62,22 +63,7 @@ const CoursesTaken = () => {
           </div>
         </div>
         {dropdownVisible && (
-          <div className="absolute mt-1 w-96 bg-white rounded-lg overflow-y-auto max-h-80">
-            {" "}
-            {classes
-              .filter((courseName) =>
-                courseName.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((courseName, index) => (
-                <div
-                  key={index}
-                  className="p-3 cursor-pointer rounded-lg my-1 bg-gray-100 hover:bg-gray-300"
-                  onClick={() => handleSelectClass(courseName)}
-                >
-                  {courseName}
-                </div>
-              ))}
-          </div>
+          <DropDown options={classes} handleOptionSelect={handleSelectClass} />
         )}
         <button
           className="absolute bottom-16 right-24 bg-gray-800 text-white px-8 py-3 rounded-lg transition-colors duration-300 hover:bg-gray-600 w-60"
