@@ -143,10 +143,33 @@ const deleteUserPlan = async (req, res) => {
   }
 };
 
+const getUserPlansName = async (req, res) => {
+  try {
+    const { uid } = req.params;
+
+    if (!uid) {
+      return res.status(400).json({ message: "Uid is required " });
+    }
+
+    const user = await User.findOne({ uid });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const planNames = user.savedPlans.map((plan) => ({
+      name: plan.name,
+      _id: plan._id,
+    }));
+    res.status(200).send(planNames);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};
 export default {
   createUser,
   addPlanToUser,
   getUserPlans,
   deleteUserPlan,
   updateUserPlan,
+  getUserPlansName,
 };

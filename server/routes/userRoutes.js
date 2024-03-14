@@ -20,4 +20,7 @@ router
   .put(userController.updateUserPlan)
   .delete(userController.deleteUserPlan);
 
+// GET /users/:uid/plans: Get user plans' names
+router.route("/:uid/plans/names").get(userController.getUserPlansName);
+
 export default router;
