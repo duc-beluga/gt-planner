@@ -36,6 +36,16 @@ GT Planner is a website that provides students with a visual roadmap of their ac
 
 - **APIs:** Postman/Insomnia
 
+## Running Locally
+### Clone the repository
+`git clone <project-link>`
+### Change to the project directory
+`cd gt-planner`
+### Install dependencies
+`pnpm instll`
+### Start the project
+`pnpm start`
+
 ## Inspiration
 
 Planning your courses each semester can be tricky. GT Planner makes it easy and clear by showing your academic path with simple visuals, helping you organize and plan your journey smoothly.
