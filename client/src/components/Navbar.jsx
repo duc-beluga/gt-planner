@@ -11,24 +11,24 @@ const Navbar = () => {
       <div className="navbar-start">
         <ul className="menu menu-horizontal rounded-box font-semibold">
           <li className="flex justify-between">
-            <Link to="/">
+            <Link to="/gt-planner/">
               <Home />
             </Link>
           </li>
           {currentUser && (
             <>
               <li>
-                <Link to="/user">
+                <Link to="/gt-planner/user">
                   <User />
                 </Link>
               </li>
               <li>
-                <Link to="/saved">
+                <Link to="/gt-planner/saved">
                   <Save />
                 </Link>
               </li>
               <li>
-                <Link to="/chat">
+                <Link to="/gt-planner/chat">
                   <MessageCircle />
                 </Link>
               </li>

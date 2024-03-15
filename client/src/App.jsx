@@ -12,11 +12,11 @@ import { Suspense } from "react";
 
 function App() {
   let routes = useRoutes([
-    { path: "/", element: <Home /> },
-    { path: "/user", element: <User /> },
-    { path: "/saved", element: <SavedBuilt /> },
-    { path: "/courses-taken", element: <CoursesTaken /> },
-    { path: "/chat", element: <Chat /> },
+    { path: "/gt-planner/", element: <Home /> },
+    { path: "/gt-planner/user", element: <User /> },
+    { path: "/gt-planner/saved", element: <SavedBuilt /> },
+    { path: "/gt-planner/courses-taken", element: <CoursesTaken /> },
+    { path: "/gt-planner/chat", element: <Chat /> },
     { path: "*", element: <PageNotFound /> },
   ]);
 
